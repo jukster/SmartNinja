@@ -1,0 +1,27 @@
+# Zakaj se uporabljata frameworka LocalAuthentication in StoreKit?
+
+Interakcija s TouchID. Večinoma omejena na bool vrednost - prstni odtis je uspešno prebran ali ne.
+
+# Kakšna je razlika med frameworkom Core Location in MapKit?
+
+Core Location omogoča interakcijo z uporabnikovo lokacijo. Mapkit omogoča embedding zemljevidov Apple Maps v aplikacijski UI.
+
+# Za kaj se uporabljajo naslednji frameworki: CloudKit, CoreTelephony,HomeKit, PassKit?
+
+CloudKit - Cloud storage layer, ki jo lahko razvijalci uporabijo v svojih iOS in OS X aplikacijah. Identifikacija uporabnikov je vezana na njihov iCloud račun.
+
+CoreTelephony - Funkcije telefoniranja, informacije o telekomunikacijskem ponudniku, upravljanje s podatkovnim prenosom.
+
+HomeKit - integracija s podprtimi napravami za pametni dom. Deluje podobno kot HealthKit, je predvsem standardirano zbirno mesto podatkov in funkcionalnosti za 3rd Party naprave. UI je večinoma Siri. 
+
+Passkit - interakcija s Passbook, ki je Applova rešitev za hrambo in uporabo majhnih personaliziranih dokumentov, ki jih ustvarjajo različni partnerji, kot so vstopnice, lojalnostne kartice, letalske vozovnice in tudi kreditne kartice za Apple Pay. 
+
+# Kakšna je razlika med Simulatorjem in Emulatorjem?
+
+Simulator posnema čimveč vidikov ciljnega operacijskega sistema, ampak pri tem ostane znotraj gostujočega operacijskega sistema in hardverske arhitekture. 
+
+Emulator posnema ciljni operacijski sistem v celoti, zato je njegovo delovanje bližje dejanski uporabi, ampak so zato počasni. 
+
+# Zakaj se uporabljajo animacije?
+
+Poleg očitne uporabe, na primer v igrah ali v grafičnih programih, je zelo veliko iOS interfaca, še posebej od iOS 7 naprej, osnovana na animaciji UI elementov.

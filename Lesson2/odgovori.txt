@@ -1,0 +1,11 @@
+# Kakšna je razlika pri kopiranju med structi in razredi?
+
+Struct je Value Type, zato kopiranje v drugo spremenljivo ustvari novo instanco Structa. Classi so Reference Type, zato kopiranje v drugo spremenljivko ustvari novo referenco za isti instanco.
+
+# Kako rečemo spremenljivkam v razredu?
+
+Lastnosti, properties.
+
+# Kako označimo razredne (statične) metode?
+
+Prefix static.

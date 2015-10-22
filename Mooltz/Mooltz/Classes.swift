@@ -12,7 +12,7 @@ enum State: Int {
     case Active = 0, Inactive
 }
 
-enum Priority: Int {
+enum Priority: String {
     case Normal, High
 }
 
@@ -31,7 +31,7 @@ class Item: Hashable {
     }
     
     let uID: Int
-    
+
     var hashValue: Int {
         return self.name.hashValue
     }
@@ -46,7 +46,7 @@ class Item: Hashable {
         }
     }
     
-    var priority = Priority(rawValue: 0) {
+    var priority = Priority(rawValue: "Normal") {
         didSet {
             self.dateModified = NSDate()
         }
@@ -56,58 +56,19 @@ class Item: Hashable {
         return "Predmet \(name), ustvarjen \(dateCreated). Status "
     }
     
-    init(name: String) {
+    init(name: String, priority: Priority) {
         self.uID = Item.nextUID
         Item.nextUID += 1
         self.name = name
         self.dateCreated = NSDate()
         self.dateModified = NSDate()
+        self.priority = priority
     }
     
     convenience init() {
-        self.init(name: "Nov predmet")
+        self.init(name: "Nov predmet", priority: Priority(rawValue: "Normal")!)
     }
 }
-/*
-class TaskManager {
-var tasks: Set<Item>
-
-func addTasks(item: Item) {
-self.tasks.append(item)
-}
-
-func deleteTasks(item: Item) {
-var tasksToDelete = [String]()
-for task in tasks:
-if let
-}
-}
-*/
-
-var prva = Item(name: "prva")
-
-print(prva.uID)
-
-print(prva.dateCreated.description)
-
-print(prva.state)
-
-print(prva.dateCreated)
-
-print(prva.priority)
-
-var drug = Item(name: "prva")
-
-drug.name
-drug.uID
-
-var mojlist = [String]()
-
-mojlist.append("prva")
-
-print(mojlist)
-
-mojlist.removeAll()
 
 class TaskManager {
     var items: Set<Item> = []
@@ -123,30 +84,12 @@ class TaskManager {
     func description() -> String {
         return "Currently holding \(items.count) items."
     }
-
+    
 }
 
-var mojManager = TaskManager()
-
-print(mojManager.items)
 
 
-mojManager.addItems(prva)
 
-mojManager.description()
-
-mojManager.addItems(drug)
-
-prva == drug
-
-prva.name == drug.name
-
-mojManager.description()
-
-var mojSet = Set<String>()
-
-mojSet.insert("bla")
-mojSet.insert("bla")
 
 
 

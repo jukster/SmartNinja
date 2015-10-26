@@ -31,19 +31,13 @@ class FirstViewController: UIViewController {
 			return
 		}
 
-		let from = Currency("EUR")
-
-		let to = Currency(destinationCurrencySelected)
-			
+		let targetCurrency = Currency(destinationCurrencySelected)
 		
-		let aConverter = MoneyConverter()
-			
-		let conversion = aConverter.convert(amount, startCurrency: from, targetCurrency: to)
-			
-		result.text = String(format: "%.2f ",conversion!.convertedValue) + conversion!.targetCurrency.description
+		if let convertedValue = amount.convert(targetCurrency) {
+			result.text = String(format: "%.2f ", convertedValue.convertedValue) + targetCurrency.description + " @ " + String(format: "%.4f", convertedValue.rate)
 		}
+	}
 
-	
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

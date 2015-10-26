@@ -8,15 +8,13 @@
 
 import UIKit
 
-class AddTasksViewController: UIViewController {
+class AddTasksViewController: UIViewController, UITextFieldDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
     
-    let myTaskManager = TaskManager()
+    let myTaskManager = TaskManager.sharedInstance
 
+    @IBOutlet weak var lastAddedLabel: UILabel!
+    
     @IBOutlet weak var taskNameSelection: UITextField!
     
     @IBOutlet weak var taskPrioritySelection: UITextField!
@@ -42,9 +40,23 @@ class AddTasksViewController: UIViewController {
             } else {
                 myTaskManager.addItems(aItem)
                 outputLabel.text = myTaskManager.description()
+                lastAddedLabel.text = "Last item added was \(aItem.name)"
+                
             }
         }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        outputLabel.text = ""
+        taskPrioritySelection.delegate = self
+        
+        if let itemName = NSUserDefaults.standardUserDefaults().objectForKey("itemName") as? String {
+            taskNameSelection.text = itemName
+        }
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

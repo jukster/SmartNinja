@@ -13,6 +13,7 @@
 		A23EC10D1BD5502F00E184E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A23EC10C1BD5502F00E184E5 /* Assets.xcassets */; };
 		A23EC1101BD5502F00E184E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23EC10E1BD5502F00E184E5 /* LaunchScreen.storyboard */; };
 		A23EC1181BD5EA0200E184E5 /* MoneyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EC1171BD5EA0200E184E5 /* MoneyConverter.swift */; settings = {ASSET_TAGS = (); }; };
+		A26543A41BD93DA600648A28 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26543A31BD93DA600648A28 /* Protocols.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A23EC10F1BD5502F00E184E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A23EC1111BD5502F00E184E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A23EC1171BD5EA0200E184E5 /* MoneyConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyConverter.swift; sourceTree = "<group>"; };
+		A26543A31BD93DA600648A28 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +66,17 @@
 				A23EC10E1BD5502F00E184E5 /* LaunchScreen.storyboard */,
 				A23EC1111BD5502F00E184E5 /* Info.plist */,
 				A23EC1171BD5EA0200E184E5 /* MoneyConverter.swift */,
+				A26543A21BD93D3200648A28 /* New Group */,
 			);
 			path = Demo1;
+			sourceTree = "<group>";
+		};
+		A26543A21BD93D3200648A28 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				A26543A31BD93DA600648A28 /* Protocols.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 				A23EC1081BD5502F00E184E5 /* ViewController.swift in Sources */,
 				A23EC1181BD5EA0200E184E5 /* MoneyConverter.swift in Sources */,
 				A23EC1061BD5502F00E184E5 /* AppDelegate.swift in Sources */,
+				A26543A41BD93DA600648A28 /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +302,7 @@
 				A23EC1161BD5502F00E184E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Currency: CustomStringConvertible {
+
+class Currency: CustomStringConvertible, Equatable, Comparable {
 	var currencyName: String
 	
 	var description: String {
@@ -17,27 +18,50 @@ class Currency: CustomStringConvertible {
 		}
 	}
 	
+	var rate: Double? {
+		let rates: [String:Double] = ["USD": 1.1, "EUR": 1.0, "JPY": 135.0]
+		return rates[self.currencyName]
+	}
+	
 	init (_ currencyName: String){
 		self.currencyName = currencyName
 	}
+	
 }
+
+func == (lhs: Currency, rhs: Currency) -> Bool {
+	return lhs.rate == rhs.rate
+}
+
+func < (lhs: Currency, rhs: Currency) -> Bool {
+	return lhs.rate < rhs.rate
+}
+
 
 class MoneyConverter {
 	
-	let rates: [String:Double] = ["EURUSD": 1.1, "EUREUR": 1.0, "EURJPY": 135.0]
+	static let sharedInstance = MoneyConverter()
 	
-	func convert (value: Double, startCurrency: Currency, targetCurrency: Currency) -> (convertedValue : Double, targetCurrency: Currency)? {
-		
-		if let thisRate = rates[startCurrency.currencyName + targetCurrency.currencyName] {
-			return (value * thisRate, targetCurrency)
+	func convert (value: Double, startCurrency: Currency, targetCurrency: Currency) -> (convertedValue : Double, rate: Double, targetCurrency: Currency)? {
+		if let rate = targetCurrency.rate {
+			return (convertedValue: value * rate, rate: rate, targetCurrency: targetCurrency)
+		} else {
+			return nil
 		}
-		else {
-			print("Za \(startCurrency.currencyName)\(targetCurrency.currencyName) nimam tečaja.")
+	
+	}
+	
+}
+
+extension Double {
+	func convert (targetCurrency: Currency) -> (convertedValue: Double, rate: Double)? {
+		let startCurrency = Currency("EUR")
+		let moneyConveter = MoneyConverter.sharedInstance
+		if let converted = moneyConveter.convert(self, startCurrency: startCurrency, targetCurrency: targetCurrency) {
+			return (converted.convertedValue,converted.rate)
+		} else {
 			return nil
 		}
 	}
-	
-	func displayRates() -> String {
-		return "Te tečaje imam: " + rates.description
-	}
+
 }

@@ -1,0 +1,23 @@
+# Kako bi v zanki uporabili type casting skupaj z ukazom switch?
+
+	for datoteka in datoteke {
+		switch datoteka {
+		case let datoteka as SistemskaDatoteka:
+			print("Sistemska")
+		case let datoteka as UporabniškaDatoteka:
+			print("Uporabniška")
+		default:
+			print("Ne ena ne druga")
+		}
+	}
+	
+# Kaj točno pomeni izraz property list in kako to povežemo z NSPropertyListSerialization?
+
+Property list je datoteka tipa XML, ki jih Mac OS X in iOS aplikacije lahko uporabljajo za storage in serializacijo objektov, običajno gre za nastavitve ali preference. NSPropertyListSerialization je objekt xnotraj Foundation, s katerim ustvarjamo in manipuliramo z njimi.
+
+# Katere vse razrede lahko shranimo v NSUserDefaults?
+NSData, NSString, NSNumber, NSDate, NSArray, or NSDictionary.
+
+# Katerih stvari ni pametno shranjevati v NSUserDefaults? Zakaj?
+Preveč obsežnih datotek, ker se naloži ob vsakem zakonu aplikacije.
+Datotek, ki jih uporabnik ustvari.

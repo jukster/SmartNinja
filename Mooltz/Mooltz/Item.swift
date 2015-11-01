@@ -1,24 +1,12 @@
 //
-//  Classes.swift
+//  Item.swift
 //  Mooltz
 //
-//  Created by Marko Jukic on 21/10/15.
+//  Created by Marko Jukic on 26/10/15.
 //  Copyright © 2015 Marko Jukic. All rights reserved.
 //
 
 import Foundation
-
-enum State: Int {
-    case Active = 0, Inactive
-}
-
-enum Priority: String {
-    case Normal, High
-}
-
-func == (lhs: Item, rhs: Item) -> Bool {
-    return lhs.name == rhs.name
-}
 
 class Item: NSObject, NSCoding {
     
@@ -54,7 +42,7 @@ class Item: NSObject, NSCoding {
         }
     }
     
-    var priority = Priority(rawValue: "Normal") {
+    var priority = Priority(rawValue: 0) {
         didSet {
             self.dateModified = NSDate()
         }
@@ -76,9 +64,9 @@ class Item: NSObject, NSCoding {
     }
     
     convenience override init() {
-        self.init(name: "Nov predmet", priority: Priority(rawValue: "Normal")!)
+        self.init(name: "Nov predmet", priority: Priority(rawValue: 0)!)
     }
-
+    
     @objc func encodeWithCoder(coder: NSCoder) {
         // do not call super in this case
         coder.encodeObject(self.uID, forKey: "uID")
@@ -86,6 +74,7 @@ class Item: NSObject, NSCoding {
         coder.encodeObject(self.dateCreated, forKey: "dateCreated")
         coder.encodeObject(self.dateModified, forKey: "dateModified")
         coder.encodeObject(self.priority as? AnyObject, forKey: "priority")
+        coder.encodeObject(self.state as? AnyObject, forKey: "state")
     }
     
     @objc required init(coder: NSCoder) {
@@ -94,56 +83,6 @@ class Item: NSObject, NSCoding {
         self.dateCreated = coder.decodeObjectForKey("dateCreated") as! NSDate
         self.dateModified = coder.decodeObjectForKey("dateModified") as! NSDate
         self.priority = coder.decodeObjectForKey("priority") as? Priority
-    }
-}
-
-class TaskManager {
-    static let sharedInstance = TaskManager()
-
-    
-    lazy var items: Set<Item> = {
-
-        func decodeItems(encoded: NSData) -> AnyObject? {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(encoded)
-        }
-
-        var savedItems = Set<Item>()
-
-        if let encoded = NSUserDefaults.standardUserDefaults().objectForKey("items") {
-            savedItems = decodeItems(encoded as! NSData) as! Set<Item>
-        }
-        return savedItems
-    }()
-    
-    func addItems(item: Item) {
-        self.items.insert(item)
-
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self.items)
-        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "items")
-        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
-    func deleteItems(item: Item) {
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self.items)
-        self.items.remove(item)
-        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "items")
-        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
-    func description() -> String {
-        return "Currently holding \(items.count) items."
-    }
-    
-}
-
-extension TaskManager {
-    func itemsWithStatus(state: State) -> [Item] {
-        var matchedItems = [Item]()
-        for item in items {
-            if item.state == state {
-                matchedItems.append(item)
-            }
-        }
-        return matchedItems
+        self.state = coder.decodeObjectForKey("state") as? State
     }
 }

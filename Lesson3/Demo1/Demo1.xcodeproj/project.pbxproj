@@ -12,8 +12,10 @@
 		A23EC10B1BD5502F00E184E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23EC1091BD5502F00E184E5 /* Main.storyboard */; };
 		A23EC10D1BD5502F00E184E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A23EC10C1BD5502F00E184E5 /* Assets.xcassets */; };
 		A23EC1101BD5502F00E184E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23EC10E1BD5502F00E184E5 /* LaunchScreen.storyboard */; };
-		A23EC1181BD5EA0200E184E5 /* MoneyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EC1171BD5EA0200E184E5 /* MoneyConverter.swift */; settings = {ASSET_TAGS = (); }; };
-		A26543A41BD93DA600648A28 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26543A31BD93DA600648A28 /* Protocols.swift */; settings = {ASSET_TAGS = (); }; };
+		A23EC1181BD5EA0200E184E5 /* MoneyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23EC1171BD5EA0200E184E5 /* MoneyConverter.swift */; };
+		A25C54301BE47F2800EB8829 /* Ljubljana.gpx in Resources */ = {isa = PBXBuildFile; fileRef = A25C542F1BE47F2800EB8829 /* Ljubljana.gpx */; };
+		A279EE431BE165BE00CBB580 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A279EE421BE165BE00CBB580 /* CoreLocation.framework */; };
+		A279EE451BE1E3A100CBB580 /* LocationsCurrencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A279EE441BE1E3A100CBB580 /* LocationsCurrencies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,9 @@
 		A23EC10F1BD5502F00E184E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A23EC1111BD5502F00E184E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A23EC1171BD5EA0200E184E5 /* MoneyConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyConverter.swift; sourceTree = "<group>"; };
-		A26543A31BD93DA600648A28 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		A25C542F1BE47F2800EB8829 /* Ljubljana.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Ljubljana.gpx; path = ../../../../../Desktop/Ljubljana.gpx; sourceTree = "<group>"; };
+		A279EE421BE165BE00CBB580 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A279EE441BE1E3A100CBB580 /* LocationsCurrencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsCurrencies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A279EE431BE165BE00CBB580 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,7 @@
 		A23EC0F91BD5502F00E184E5 = {
 			isa = PBXGroup;
 			children = (
+				A279EE421BE165BE00CBB580 /* CoreLocation.framework */,
 				A23EC1041BD5502F00E184E5 /* Demo1 */,
 				A23EC1031BD5502F00E184E5 /* Products */,
 			);
@@ -59,24 +65,17 @@
 		A23EC1041BD5502F00E184E5 /* Demo1 */ = {
 			isa = PBXGroup;
 			children = (
+				A25C542F1BE47F2800EB8829 /* Ljubljana.gpx */,
 				A23EC1051BD5502F00E184E5 /* AppDelegate.swift */,
 				A23EC1071BD5502F00E184E5 /* ViewController.swift */,
+				A279EE441BE1E3A100CBB580 /* LocationsCurrencies.swift */,
 				A23EC1091BD5502F00E184E5 /* Main.storyboard */,
 				A23EC10C1BD5502F00E184E5 /* Assets.xcassets */,
 				A23EC10E1BD5502F00E184E5 /* LaunchScreen.storyboard */,
 				A23EC1111BD5502F00E184E5 /* Info.plist */,
 				A23EC1171BD5EA0200E184E5 /* MoneyConverter.swift */,
-				A26543A21BD93D3200648A28 /* New Group */,
 			);
 			path = Demo1;
-			sourceTree = "<group>";
-		};
-		A26543A21BD93D3200648A28 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				A26543A31BD93DA600648A28 /* Protocols.swift */,
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +109,7 @@
 				TargetAttributes = {
 					A23EC1011BD5502F00E184E5 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = CFTKG3NHS8;
 					};
 				};
 			};
@@ -137,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A23EC1101BD5502F00E184E5 /* LaunchScreen.storyboard in Resources */,
+				A25C54301BE47F2800EB8829 /* Ljubljana.gpx in Resources */,
 				A23EC10D1BD5502F00E184E5 /* Assets.xcassets in Resources */,
 				A23EC10B1BD5502F00E184E5 /* Main.storyboard in Resources */,
 			);
@@ -152,7 +153,7 @@
 				A23EC1081BD5502F00E184E5 /* ViewController.swift in Sources */,
 				A23EC1181BD5EA0200E184E5 /* MoneyConverter.swift in Sources */,
 				A23EC1061BD5502F00E184E5 /* AppDelegate.swift in Sources */,
-				A26543A41BD93DA600648A28 /* Protocols.swift in Sources */,
+				A279EE451BE1E3A100CBB580 /* LocationsCurrencies.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,10 +266,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Demo1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jukster.Demo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -276,10 +280,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Demo1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jukster.Demo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -21,18 +21,20 @@
                                 <animations/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VVT-jk-FLq">
-                                <rect key="frame" x="100" y="142" width="121" height="29"/>
+                                <rect key="frame" x="8" y="187" width="305" height="29"/>
                                 <animations/>
                                 <segments>
                                     <segment title="USD"/>
                                     <segment title="JPY"/>
+                                    <segment title="GBP"/>
+                                    <segment title="RUB"/>
                                 </segments>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhl-NZ-BK5">
-                                <rect key="frame" x="93" y="269" width="134" height="30"/>
+                                <rect key="frame" x="90" y="276" width="134" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Convert"/>
                                 <connections>
@@ -60,6 +62,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvi-PQ-ga9">
+                                <rect key="frame" x="132" y="229" width="57" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Suggest"/>
+                                <connections>
+                                    <action selector="getLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HRs-cH-Q5x"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMe-co-uIM">
+                                <rect key="frame" x="22" y="273" width="276" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -68,6 +86,7 @@
                     <connections>
                         <outlet property="destinationCurrency" destination="VVT-jk-FLq" id="q8j-zi-kGg"/>
                         <outlet property="enterAmount" destination="ueB-Jv-utZ" id="YpZ-Ie-npJ"/>
+                        <outlet property="locationInformation" destination="IMe-co-uIM" id="bEC-O0-WYo"/>
                         <outlet property="result" destination="FEM-s7-tKc" id="RKY-H7-ugJ"/>
                     </connections>
                 </viewController>

@@ -19,7 +19,7 @@ class Currency: CustomStringConvertible, Equatable, Comparable {
 	}
 	
 	var rate: Double? {
-		let rates: [String:Double] = ["USD": 1.1, "EUR": 1.0, "JPY": 135.0]
+		let rates: [String:Double] = ["USD": 1.1, "EUR": 1.0, "JPY": 135.0, "GBP": 0.8, "RUB": 70]
 		return rates[self.currencyName]
 	}
 	
@@ -42,6 +42,10 @@ class MoneyConverter {
 	
 	static let sharedInstance = MoneyConverter()
 	
+	private init(){
+	
+	}
+
 	func convert (value: Double, startCurrency: Currency, targetCurrency: Currency) -> (convertedValue : Double, rate: Double, targetCurrency: Currency)? {
 		if let rate = targetCurrency.rate {
 			return (convertedValue: value * rate, rate: rate, targetCurrency: targetCurrency)

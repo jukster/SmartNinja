@@ -13,11 +13,8 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
     let myTaskManager = TaskManager.sharedInstance
 
     @IBOutlet weak var lastAddedLabel: UILabel!
-    
     @IBOutlet weak var taskNameSelection: UITextField!
-    
     @IBOutlet weak var taskPrioritySelection: UISegmentedControl!
-    
     @IBOutlet weak var outputLabel: UILabel!
     
     @IBAction func addTask(sender: AnyObject) {
@@ -44,7 +41,7 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
         
         // Do any additional setup after loading the view, typically from a nib.
         
-        outputLabel.text = ""
+        // outputLabel.text = ""
         
         if let itemName = NSUserDefaults.standardUserDefaults().objectForKey("itemName") as? String {
             taskNameSelection.text = itemName
@@ -61,13 +58,20 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
         self.view.endEditing(true)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "addImage" {
+            let destViewController = segue.destinationViewController
+            (destViewController as! AddImageViewController).delegate = self
+        }
+    }
+    
     func textFieldShouldReturn(textfield: UITextField) -> Bool {
         textfield.resignFirstResponder()
         return true
     }
     
     func setImage(image: UIImage) {
-        outputLabel.text = String(image.size.height)
+        self.outputLabel.text = "Added image: " + String(image.size.width) + " x " + String(image.size.height)
     }
 
 

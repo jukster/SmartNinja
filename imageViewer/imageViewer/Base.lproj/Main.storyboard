@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GFS-kn-AJq">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--Test-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="imageViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Qh-DD-CXm">
+                                <rect key="frame" x="10" y="40" width="300" height="150"/>
+                                <animations/>
+                                <state key="normal" title="Button" image="WallpaperWizard-17132036"/>
+                                <connections>
+                                    <segue destination="mwQ-vS-9Ia" kind="show" identifier="Slika1" id="mF7-Ez-shb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBQ-4J-kyY">
+                                <rect key="frame" x="10" y="218" width="300" height="150"/>
+                                <animations/>
+                                <state key="normal" title="Button" image="WallpaperWizard-772238940"/>
+                                <connections>
+                                    <segue destination="mwQ-vS-9Ia" kind="show" identifier="Slika2" id="Y8V-vO-uqD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwJ-r3-XjP">
+                                <rect key="frame" x="10" y="398" width="300" height="150"/>
+                                <animations/>
+                                <state key="normal" title="Button" image="WallpaperWizard-2047600948"/>
+                                <connections>
+                                    <segue destination="mwQ-vS-9Ia" kind="show" identifier="Slika3" id="WWj-sZ-GAR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Test" id="n4w-bS-t12">
+                        <barButtonItem key="backBarButtonItem" title="bla bla" id="e25-SJ-Hbs"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1099" y="590"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="7e9-FZ-G1I">
+            <objects>
+                <viewController id="mwQ-vS-9Ia" customClass="DetailViewController" customModule="imageViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o2t-qb-QAz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Okm-ls-eAK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YSC-oL-buS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAU-BC-DHH">
+                                <rect key="frame" x="40" y="220" width="240" height="128"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="qAU-BC-DHH" id="DY2-8p-09P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Unv-ya-Mpc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1607" y="606"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OoB-Pb-XXY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GFS-kn-AJq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f0b-KV-VA9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ARt-mR-GPV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PVX-Qr-RW9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="287" y="590"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="WallpaperWizard-17132036" width="2560" height="1440"/>
+        <image name="WallpaperWizard-2047600948" width="2560" height="1600"/>
+        <image name="WallpaperWizard-772238940" width="2560" height="1440"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Y8V-vO-uqD"/>
+    </inferredMetricsTieBreakers>
+</document>

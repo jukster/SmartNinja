@@ -12,7 +12,7 @@
 		A2E8A0801BE7D89700505036 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2E8A07E1BE7D89700505036 /* Main.storyboard */; };
 		A2E8A0821BE7D89700505036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E8A0811BE7D89700505036 /* Assets.xcassets */; };
 		A2E8A0851BE7D89700505036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2E8A0831BE7D89700505036 /* LaunchScreen.storyboard */; };
-		A2E8A08D1BE7DA2000505036 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E8A08C1BE7DA2000505036 /* TableViewController.swift */; };
+		A2E8A08D1BE7DA2000505036 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E8A08C1BE7DA2000505036 /* ArchiveViewController.swift */; };
 		A2E8A0911BE8724E00505036 /* CustomTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E8A0901BE8724E00505036 /* CustomTabController.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +24,7 @@
 		A2E8A0811BE7D89700505036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2E8A0841BE7D89700505036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2E8A0861BE7D89700505036 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2E8A08C1BE7DA2000505036 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
+		A2E8A08C1BE7DA2000505036 /* ArchiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArchiveViewController.swift; path = SendMessage/ArchiveViewController.swift; sourceTree = SOURCE_ROOT; };
 		A2E8A0901BE8724E00505036 /* CustomTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				A2E8A07A1BE7D89700505036 /* AppDelegate.swift */,
-				A2E8A08C1BE7DA2000505036 /* TableViewController.swift */,
+				A2E8A08C1BE7DA2000505036 /* ArchiveViewController.swift */,
 				A2E8A07C1BE7D89700505036 /* ViewController.swift */,
 				A2E8A0901BE8724E00505036 /* CustomTabController.swift */,
 				A2E8A07E1BE7D89700505036 /* Main.storyboard */,
@@ -142,7 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2E8A08D1BE7DA2000505036 /* TableViewController.swift in Sources */,
+				A2E8A08D1BE7DA2000505036 /* ArchiveViewController.swift in Sources */,
 				A2E8A0911BE8724E00505036 /* CustomTabController.swift in Sources */,
 				A2E8A07D1BE7D89700505036 /* ViewController.swift in Sources */,
 				A2E8A07B1BE7D89700505036 /* AppDelegate.swift in Sources */,

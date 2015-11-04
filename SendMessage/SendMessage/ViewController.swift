@@ -16,6 +16,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         if let lastMessage = NSUserDefaults.standardUserDefaults().objectForKey("currentMessage") as? String {
             enteredText.text = lastMessage
+            
+            let tbvc = self.tabBarController as! CustomTabController
+            tbvc.currentMessage = lastMessage
+
         }
         // Do any additional setup after loading the view, typically from a nib.
     }

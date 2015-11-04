@@ -1,5 +1,5 @@
 //
-//  TableViewController.swift
+//  ArchiveViewController.swift
 //  SendMessage
 //
 //  Created by Marko Jukic on 02/11/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UIViewController {
+class ArchiveViewController: UIViewController {
 
     @IBOutlet weak var archivedTextDisplay: UITextView!
     

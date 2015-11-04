@@ -8,7 +8,7 @@
         <!--Item 2-->
         <scene sceneID="Q2e-dD-Dau">
             <objects>
-                <viewController id="PV1-dV-LTe" customClass="TableViewController" customModule="SendMessage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PV1-dV-LTe" customClass="ArchiveViewController" customModule="SendMessage" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8wP-YN-IGQ"/>
                         <viewControllerLayoutGuide type="bottom" id="cw3-jD-gk2"/>

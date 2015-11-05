@@ -11,7 +11,7 @@ import UIKit
 class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesImage {
     
     let myTaskManager = TaskManager.sharedInstance
-
+    
     @IBOutlet weak var lastAddedLabel: UILabel!
     @IBOutlet weak var taskNameSelection: UITextField!
     @IBOutlet weak var taskPrioritySelection: UISegmentedControl!
@@ -46,6 +46,15 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
         if let itemName = NSUserDefaults.standardUserDefaults().objectForKey("itemName") as? String {
             taskNameSelection.text = itemName
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "novItemLog", name: "itemName", object: nil)
+        
+        }
+        
+        
+    func novItemLog() {
+        print("dodan item")
+        
         
     }
 

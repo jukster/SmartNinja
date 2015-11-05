@@ -31,6 +31,7 @@ class TaskManager {
         let data = NSKeyedArchiver.archivedDataWithRootObject(self.items)
         NSUserDefaults.standardUserDefaults().setObject(data, forKey: "items")
         NSUserDefaults.standardUserDefaults().synchronize()
+        NSNotificationCenter.defaultCenter().postNotificationName("itemName", object: self)
     }
     
     func deleteItems(item: Item) {

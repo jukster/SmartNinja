@@ -19,7 +19,11 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func addImage(sender: AnyObject) {
         imagePicker.allowsEditing = false
-        imagePicker.sourceType = .PhotoLibrary
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            imagePicker.sourceType = .Camera
+        } else {
+            imagePicker.sourceType = .PhotoLibrary
+        }
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
@@ -45,8 +49,12 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
     }
 
     @IBAction func confirmImageSelection(sender: AnyObject) {
-        self.delegate!.setImage(addedImage.image!)
-        self.dismissViewControllerAnimated(false, completion: nil)
+        print(self.delegate.debugDescription)
+        if let chosenImage = addedImage.image {
+            self.delegate!.setImage(chosenImage)
+            self.navigationController?.popToViewController(self.delegate as! UIViewController, animated: true)
+
+        }
     }
     
     override func didReceiveMemoryWarning() {

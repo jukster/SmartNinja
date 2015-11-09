@@ -17,6 +17,8 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
     @IBOutlet weak var taskPrioritySelection: UISegmentedControl!
     @IBOutlet weak var outputLabel: UILabel!
     
+    @IBOutlet weak var chosenImageView: UIImageView!
+    
     @IBAction func addTask(sender: AnyObject) {
 
         guard taskNameSelection.text != "" else {
@@ -37,6 +39,7 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view loaded: \(self.debugDescription)")
         self.taskNameSelection.delegate = self
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -80,7 +83,10 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
     }
     
     func setImage(image: UIImage) {
-        self.outputLabel.text = "Added image: " + String(image.size.width) + " x " + String(image.size.height)
+        chosenImageView.contentMode = .ScaleAspectFit
+        chosenImageView.image = image
+        
+        //outputLabel.text = "Added image: " + String(image.size.width) + " x " + String(image.size.height)
     }
 
 

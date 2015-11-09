@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Item 2-->
@@ -46,37 +47,76 @@
                         <viewControllerLayoutGuide type="bottom" id="RgL-mg-udt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IMG-xt-P68">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EuV-hO-F0I">
-                                <rect key="frame" x="40" y="39" width="240" height="171"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EuV-hO-F0I">
+                                <rect key="frame" x="8" y="27" width="359" height="232.5"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygj-uh-DjV">
-                                <rect key="frame" x="142" y="227" width="36" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygj-uh-DjV">
+                                <rect key="frame" x="83" y="289" width="209" height="88"/>
                                 <animations/>
-                                <state key="normal" title="Send"/>
+                                <color key="backgroundColor" red="1" green="0.481521353908824" blue="0.82297211787765678" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="2Cc-sC-enU"/>
+                                    <constraint firstAttribute="width" constant="209" id="DND-47-NeW"/>
+                                </constraints>
+                                <state key="normal" title="Send">
+                                    <color key="titleShadowColor" red="1" green="0.14592260093932974" blue="0.3117529352884526" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="send:" destination="2VK-Lp-ig0" eventType="touchUpInside" id="MEy-Og-MOC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rih-mZ-SXv">
+                                <rect key="frame" x="36" y="577.5" width="176" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Rih-mZ-SXv" firstAttribute="centerY" secondItem="IMG-xt-P68" secondAttribute="centerY" id="2F6-hm-fKd"/>
+                            <constraint firstItem="ygj-uh-DjV" firstAttribute="top" secondItem="EuV-hO-F0I" secondAttribute="bottom" constant="30" id="2tG-Oy-zXe"/>
+                            <constraint firstItem="EuV-hO-F0I" firstAttribute="top" secondItem="rCJ-cU-vfs" secondAttribute="bottom" constant="7" id="8Pt-Xw-nbF"/>
+                            <constraint firstItem="RgL-mg-udt" firstAttribute="top" secondItem="Rih-mZ-SXv" secondAttribute="bottom" constant="20" id="BqF-iO-AT2"/>
+                            <constraint firstItem="ygj-uh-DjV" firstAttribute="centerX" secondItem="IMG-xt-P68" secondAttribute="centerX" constant="92" id="FDB-lp-AyZ"/>
+                            <constraint firstItem="ygj-uh-DjV" firstAttribute="centerX" secondItem="IMG-xt-P68" secondAttribute="centerX" id="RdN-cv-JkG"/>
+                            <constraint firstItem="Rih-mZ-SXv" firstAttribute="centerX" secondItem="IMG-xt-P68" secondAttribute="centerX" id="S1E-Ox-meR"/>
+                            <constraint firstItem="EuV-hO-F0I" firstAttribute="leading" secondItem="IMG-xt-P68" secondAttribute="leading" constant="8" id="UUv-c6-9My"/>
+                            <constraint firstItem="EuV-hO-F0I" firstAttribute="top" secondItem="rCJ-cU-vfs" secondAttribute="bottom" constant="8" id="VxR-03-OCP"/>
+                            <constraint firstAttribute="trailing" secondItem="EuV-hO-F0I" secondAttribute="trailing" constant="8" id="XPt-cF-wPY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rih-mZ-SXv" secondAttribute="trailing" constant="147" id="Yg2-b5-7tf"/>
+                            <constraint firstItem="ygj-uh-DjV" firstAttribute="centerY" secondItem="IMG-xt-P68" secondAttribute="centerY" id="cQf-Nk-UOg"/>
+                            <constraint firstItem="Rih-mZ-SXv" firstAttribute="leading" secondItem="IMG-xt-P68" secondAttribute="leadingMargin" constant="20" id="ru9-de-3i2"/>
+                            <constraint firstItem="ygj-uh-DjV" firstAttribute="centerY" secondItem="IMG-xt-P68" secondAttribute="centerY" constant="91.5" id="tbd-gb-Sre"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VxR-03-OCP"/>
+                                <exclude reference="FDB-lp-AyZ"/>
+                                <exclude reference="tbd-gb-Sre"/>
+                                <exclude reference="2F6-hm-fKd"/>
+                                <exclude reference="S1E-Ox-meR"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="GtZ-Q9-8xZ"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="enteredText" destination="EuV-hO-F0I" id="GYz-Sd-gca"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbG-b6-gE4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="646" y="-587"/>
+            <point key="canvasLocation" x="604" y="-650"/>
         </scene>
         <!--Custom Tab Controller-->
         <scene sceneID="gRz-ZR-Nqz">

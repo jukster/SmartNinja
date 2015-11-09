@@ -11,7 +11,6 @@
 		A25004581BDE9ECF00370136 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25004571BDE9ECF00370136 /* TaskManager.swift */; };
 		A250045B1BDE9F1200370136 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25004591BDE9F1200370136 /* Priority.swift */; };
 		A250045C1BDE9F1200370136 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A250045A1BDE9F1200370136 /* State.swift */; };
-		A27F51B81BE612510065E3BC /* NewBalance-new-balance-11067882-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A27F51B71BE612510065E3BC /* NewBalance-new-balance-11067882-2.jpg */; };
 		A27F51BA1BE614270065E3BC /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F51B91BE614270065E3BC /* AddImageViewController.swift */; };
 		A27F51BC1BE61A6A0065E3BC /* receivesImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F51BB1BE61A6A0065E3BC /* receivesImage.swift */; };
 		A297D19C1BE2804100FEF12B /* DelegateExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297D19B1BE2804100FEF12B /* DelegateExample.swift */; };
@@ -28,7 +27,6 @@
 		A25004571BDE9ECF00370136 /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 		A25004591BDE9F1200370136 /* Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 		A250045A1BDE9F1200370136 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		A27F51B71BE612510065E3BC /* NewBalance-new-balance-11067882-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "NewBalance-new-balance-11067882-2.jpg"; path = "../../../../Downloads/NewBalance-new-balance-11067882-2.jpg"; sourceTree = "<group>"; };
 		A27F51B91BE614270065E3BC /* AddImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
 		A27F51BB1BE61A6A0065E3BC /* receivesImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = receivesImage.swift; sourceTree = "<group>"; };
 		A297D19B1BE2804100FEF12B /* DelegateExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateExample.swift; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 				A298F32C1BEB13C40034DA9C /* TableViewController.swift */,
 				A27F51BB1BE61A6A0065E3BC /* receivesImage.swift */,
 				A2D47C001BD73A330048D9C7 /* Main.storyboard */,
-				A27F51B71BE612510065E3BC /* NewBalance-new-balance-11067882-2.jpg */,
 				A2D47C031BD73A330048D9C7 /* Assets.xcassets */,
 				A2D47C051BD73A330048D9C7 /* LaunchScreen.storyboard */,
 				A2D47C081BD73A330048D9C7 /* Info.plist */,
@@ -152,7 +149,6 @@
 				A2D47C071BD73A330048D9C7 /* LaunchScreen.storyboard in Resources */,
 				A2D47C041BD73A330048D9C7 /* Assets.xcassets in Resources */,
 				A2D47C021BD73A330048D9C7 /* Main.storyboard in Resources */,
-				A27F51B81BE612510065E3BC /* NewBalance-new-balance-11067882-2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

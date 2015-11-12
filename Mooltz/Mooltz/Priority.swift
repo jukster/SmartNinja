@@ -7,7 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
-enum Priority: Int {
+enum Priority: Int, CustomStringConvertible {
     case Normal, High
+    
+    
+    var description : String {
+        switch self {
+        case .Normal: return "Normal";
+        case .High: return "High";
+        }
+    }
 }
+
+let mojFont = UIFont(name: "Avenir Next", size: 14.0)

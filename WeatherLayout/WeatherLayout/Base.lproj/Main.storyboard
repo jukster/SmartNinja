@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -20,34 +19,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nz_" translatesAutoresizingMaskIntoConstraints="NO" id="muM-r2-VrT" userLabel="ozadje">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nz_" translatesAutoresizingMaskIntoConstraints="NO" id="muM-r2-VrT" userLabel="ozadje">
                                 <rect key="frame" x="-212" y="-210" width="1024" height="1020"/>
                                 <animations/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 ºC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDW-Rq-7qW" userLabel="temperatura">
-                                <rect key="frame" x="255" y="288" width="91" height="43"/>
+                                <rect key="frame" x="255" y="0.0" width="91" height="43"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud32" translatesAutoresizingMaskIntoConstraints="NO" id="Aty-iB-wBq" userLabel="ikona">
-                                <rect key="frame" x="180" y="40" width="240" height="240"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="5dS-Uf-2eM"/>
-                                    <constraint firstAttribute="width" secondItem="Aty-iB-wBq" secondAttribute="height" multiplier="1:1" id="WB2-8y-iaT"/>
-                                    <constraint firstAttribute="height" constant="160" id="eVR-hc-qlO"/>
-                                    <constraint firstAttribute="width" secondItem="Aty-iB-wBq" secondAttribute="height" multiplier="1:1" id="wed-11-BQv"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="5dS-Uf-2eM"/>
-                                        <exclude reference="WB2-8y-iaT"/>
-                                        <exclude reference="eVR-hc-qlO"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ljubljana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExG-OL-fy0" userLabel="Mesto">
                                 <rect key="frame" x="211" y="446" width="177" height="54"/>
                                 <animations/>
@@ -61,23 +43,16 @@
                         <constraints>
                             <constraint firstItem="RDW-Rq-7qW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FPX-8i-amO"/>
                             <constraint firstItem="ExG-OL-fy0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Faz-JK-rjy"/>
-                            <constraint firstItem="Aty-iB-wBq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S23-Nu-Mc2"/>
-                            <constraint firstItem="Aty-iB-wBq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.4" id="T3M-cA-Ot6"/>
                             <constraint firstItem="muM-r2-VrT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="U1n-Hy-0jm"/>
                             <constraint firstItem="muM-r2-VrT" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1.7" id="Vrp-fF-EQP"/>
                             <constraint firstItem="muM-r2-VrT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xe5-98-3XY"/>
-                            <constraint firstItem="RDW-Rq-7qW" firstAttribute="top" secondItem="Aty-iB-wBq" secondAttribute="bottom" constant="8" id="bnE-lS-xMs"/>
                             <constraint firstItem="muM-r2-VrT" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="bsT-Yd-dyz"/>
                             <constraint firstItem="muM-r2-VrT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ceI-aq-MOE"/>
-                            <constraint firstItem="Aty-iB-wBq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="n8y-4G-FIz"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ExG-OL-fy0" secondAttribute="bottom" constant="100" id="p6S-4e-eIv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Aty-iB-wBq" secondAttribute="trailing" constant="200" id="qG2-Jc-ZsJ"/>
-                            <constraint firstItem="Aty-iB-wBq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="200" id="qka-XO-eWS"/>
+                            <constraint firstItem="RDW-Rq-7qW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="q6t-GP-6S5"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="qG2-Jc-ZsJ"/>
-                                <exclude reference="qka-XO-eWS"/>
                                 <exclude reference="U1n-Hy-0jm"/>
                                 <exclude reference="bsT-Yd-dyz"/>
                             </mask>
@@ -88,6 +63,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="cityName" destination="ExG-OL-fy0" id="6Tl-Xg-LaY"/>
+                        <outlet property="degreesLabel" destination="RDW-Rq-7qW" id="Daq-fx-wtB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,7 +74,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud32" width="512" height="512"/>
         <image name="nz_" width="1024" height="1024"/>
     </resources>
 </document>

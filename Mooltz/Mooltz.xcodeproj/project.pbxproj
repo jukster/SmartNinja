@@ -15,6 +15,7 @@
 		A27F51BC1BE61A6A0065E3BC /* receivesImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F51BB1BE61A6A0065E3BC /* receivesImage.swift */; };
 		A297D19C1BE2804100FEF12B /* DelegateExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297D19B1BE2804100FEF12B /* DelegateExample.swift */; };
 		A298F32D1BEB13C40034DA9C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A298F32C1BEB13C40034DA9C /* TableViewController.swift */; };
+		A29EC1CE1BF2FFF10020A846 /* notesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29EC1CD1BF2FFF10020A846 /* notesViewController.swift */; };
 		A2D47BFD1BD73A330048D9C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D47BFC1BD73A330048D9C7 /* AppDelegate.swift */; };
 		A2D47BFF1BD73A330048D9C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D47BFE1BD73A330048D9C7 /* ViewController.swift */; };
 		A2D47C021BD73A330048D9C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D47C001BD73A330048D9C7 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		A27F51BB1BE61A6A0065E3BC /* receivesImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = receivesImage.swift; sourceTree = "<group>"; };
 		A297D19B1BE2804100FEF12B /* DelegateExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateExample.swift; sourceTree = "<group>"; };
 		A298F32C1BEB13C40034DA9C /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		A29EC1CD1BF2FFF10020A846 /* notesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notesViewController.swift; sourceTree = "<group>"; };
 		A2D47BF91BD73A330048D9C7 /* Mooltz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mooltz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D47BFC1BD73A330048D9C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2D47BFE1BD73A330048D9C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				A27F51B91BE614270065E3BC /* AddImageViewController.swift */,
 				A298F32C1BEB13C40034DA9C /* TableViewController.swift */,
 				A27F51BB1BE61A6A0065E3BC /* receivesImage.swift */,
+				A29EC1CD1BF2FFF10020A846 /* notesViewController.swift */,
 				A2D47C001BD73A330048D9C7 /* Main.storyboard */,
 				A2D47C031BD73A330048D9C7 /* Assets.xcassets */,
 				A2D47C051BD73A330048D9C7 /* LaunchScreen.storyboard */,
@@ -163,6 +166,7 @@
 				A25004561BDE9EA200370136 /* Item.swift in Sources */,
 				A27F51BC1BE61A6A0065E3BC /* receivesImage.swift in Sources */,
 				A298F32D1BEB13C40034DA9C /* TableViewController.swift in Sources */,
+				A29EC1CE1BF2FFF10020A846 /* notesViewController.swift in Sources */,
 				A27F51BA1BE614270065E3BC /* AddImageViewController.swift in Sources */,
 				A2D47BFF1BD73A330048D9C7 /* ViewController.swift in Sources */,
 				A25004581BDE9ECF00370136 /* TaskManager.swift in Sources */,

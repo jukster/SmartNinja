@@ -46,6 +46,10 @@ class AddImageViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        addedImage.backgroundColor = UIColor.blueColor()
+        UIView.animateWithDuration(1.0) {
+            self.addedImage.transform = CGAffineTransformMakeRotation(CGFloat(M_1_PI))
+        }
     }
 
     @IBAction func confirmImageSelection(sender: AnyObject) {

@@ -37,18 +37,24 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
         
         self.textFieldShouldReturn(taskNameSelection)
         let aItem = Item(name: taskNameSelection.text!, priority: Priority(rawValue: taskPrioritySelection.selectedSegmentIndex)!)
+            print("about to add \(aItem.name) with id \(aItem.uID)")
+            print(myTaskManager.items.contains(aItem))
+            print(TaskManager.sharedInstance.items.contains(aItem))
+            print(myTaskManager.items)
             if myTaskManager.items.contains(aItem) {
                 outputLabel.text = "Item already exists"
             } else {
                 myTaskManager.addItems(aItem)
+                print("just added \(aItem.name)")
+                print(myTaskManager.items)
                 outputLabel.text = myTaskManager.description()
                 lastAddedLabel.text = "Last item added was \(aItem.name)"
                 
-                UIView.animateWithDuration(0.25, delay: 0, options: [], animations: {
+                UIView.animateWithDuration(0.1, delay: 0, options: [], animations: {
                         self.addTask.transform = CGAffineTransformMakeScale(1.5, 1.5)
                     
                     }, completion: {
-                        completed in UIView.animateWithDuration(0.25, animations: {
+                        completed in UIView.animateWithDuration(0.1, animations: {
                             self.addTask.transform = CGAffineTransformIdentity
                         })
 
@@ -62,12 +68,6 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
         
         // Do any additional setup after loading the view, typically from a nib.
         
-        // outputLabel.text = ""
-        
-        if let itemName = NSUserDefaults.standardUserDefaults().objectForKey("itemName") as? String {
-            taskNameSelection.text = itemName
-        }
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "novItemLog", name: "itemName", object: nil)
         
         outputLabel.font = mojFont
@@ -77,12 +77,13 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
         
         
     func novItemLog() {
-        print("dodan item")
+        //print("dodan item")
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        saveItems(self)
         // Dispose of any resources that can be recreated.
     }
 

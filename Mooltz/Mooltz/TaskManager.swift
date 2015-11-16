@@ -11,34 +11,18 @@ import Foundation
 class TaskManager {
     static let sharedInstance = TaskManager()
     
-    func decodeItems(encoded: NSData) -> AnyObject? {
-        return NSKeyedUnarchiver.unarchiveObjectWithData(encoded)
-    }
-    
-    lazy var items: Set<Item> = {
-        
-        var savedItems = Set<Item>()
-        
-        if let encoded = NSUserDefaults.standardUserDefaults().objectForKey("items") {
-            savedItems = self.decodeItems(encoded as! NSData) as! Set<Item>
-        }
-        return savedItems
-    }()
+    lazy var items = [Item]()
     
     func addItems(item: Item) {
-        self.items.insert(item)
-        
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self.items)
-        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "items")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        self.items.append(item)
         NSNotificationCenter.defaultCenter().postNotificationName("itemName", object: self)
     }
     
     func deleteItems(item: Item) {
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self.items)
-        self.items.remove(item)
-        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "items")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        guard let index = self.items.indexOf(item) else {
+            return
+        }
+        self.items.removeAtIndex(index)
     }
     
     func description() -> String {

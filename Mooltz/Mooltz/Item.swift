@@ -50,8 +50,8 @@ class Item: NSObject, NSCoding {
     
     override var description: String {
         let formatter = NSDateFormatter()
-        formatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        return "Predmet \(name), ustvarjen \(formatter.stringFromDate(dateCreated))."
+        formatter.timeStyle = NSDateFormatterStyle.LongStyle
+        return "Predmet \(name), ustvarjen \(formatter.stringFromDate(dateCreated)). ID \(uID)"
     }
     
     init(name: String, priority: Priority) {

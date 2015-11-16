@@ -10,7 +10,7 @@ import UIKit
 
 class AddImageViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var delegate: receivesImage?
+    weak var delegate: receivesImage?
 
     let imagePicker = UIImagePickerController()
     

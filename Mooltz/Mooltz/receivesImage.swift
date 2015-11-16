@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol receivesImage {
+protocol receivesImage: class {
     func setImage(_: UIImage)
 }

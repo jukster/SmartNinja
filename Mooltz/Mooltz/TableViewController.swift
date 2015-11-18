@@ -8,17 +8,12 @@
 
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    @IBOutlet var itemsTable: UITableView!
+class TableViewController: UIViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
         
         cell.textLabel?.text = TaskManager.sharedInstance.items[indexPath.row].name
-        print("hello from tableview")
-        print(TaskManager.sharedInstance.items)
-        
         return cell
     }
 

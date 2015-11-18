@@ -24,13 +24,15 @@ class ViewController: UIViewController {
             
             if self.counter == 0 {
                 UIView.animateWithDuration(0.1, animations: {
-                        self.timer.transform = CGAffineTransformMakeScale(1.5, 1.5)
+                        self.timer.transform = CGAffineTransformMakeScale(10, 10)
                     }, completion: {
                         completed in UIView.animateWithDuration(0.1, animations: {
                             self.timer.transform = CGAffineTransformIdentity
                         })
                     
                     })
+                timer.textColor = UIColor.greenColor()
+                timer.text = "00000000"
             }
         }
     }
@@ -39,7 +41,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
     @IBAction func addTime(sender: AnyObject) {
-        counter += 10
+        counter += 1000
     }
     
     @IBAction func startTimer(sender: AnyObject) {

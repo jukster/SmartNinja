@@ -24,7 +24,7 @@ class Item: NSObject, NSCoding {
     
     var dateModified: NSDate
     
-    var state = State(rawValue: 0) {
+    var active = true {
         didSet {
             self.dateModified = NSDate()
         }
@@ -67,6 +67,18 @@ class Item: NSObject, NSCoding {
         self.init(name: "Nov predmet", priority: Priority(rawValue: 0)!)
     }
     
+    // demo initializer za preteklost
+    init(forceBackwardsDate: Int) {
+        let dateCreated = NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: forceBackwardsDate*(-1), toDate: NSDate(), options: [])
+
+        self.uID = Item.nextUID
+        Item.nextUID += 1
+        self.name = "Neka stvar za \(forceBackwardsDate) dni nazaj"
+        self.dateCreated = dateCreated!
+        self.dateModified = NSDate()
+        self.priority = Priority(rawValue: 0)
+    }
+    
     @objc func encodeWithCoder(coder: NSCoder) {
         // do not call super in this case
         coder.encodeObject(self.uID, forKey: "uID")
@@ -74,7 +86,7 @@ class Item: NSObject, NSCoding {
         coder.encodeObject(self.dateCreated, forKey: "dateCreated")
         coder.encodeObject(self.dateModified, forKey: "dateModified")
         coder.encodeObject(self.priority as? AnyObject, forKey: "priority")
-        coder.encodeObject(self.state as? AnyObject, forKey: "state")
+        coder.encodeObject(self.active, forKey: "active")
     }
     
     @objc required init(coder: NSCoder) {
@@ -83,6 +95,6 @@ class Item: NSObject, NSCoding {
         self.dateCreated = coder.decodeObjectForKey("dateCreated") as! NSDate
         self.dateModified = coder.decodeObjectForKey("dateModified") as! NSDate
         self.priority = coder.decodeObjectForKey("priority") as? Priority
-        self.state = coder.decodeObjectForKey("state") as? State
+        self.active = coder.decodeObjectForKey("active") as! Bool
     }
 }

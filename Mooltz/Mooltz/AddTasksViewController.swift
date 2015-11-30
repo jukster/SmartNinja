@@ -36,7 +36,25 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
         }
         
         self.textFieldShouldReturn(taskNameSelection)
-        let aItem = Item(name: taskNameSelection.text!, priority: Priority(rawValue: taskPrioritySelection.selectedSegmentIndex)!)
+        
+        var aItem: Item
+        
+        if let forceBackwardsDateInt = Int(taskNameSelection.text!) {
+            aItem = Item(forceBackwardsDate: forceBackwardsDateInt)
+            print("fudging item with backwardsDate")
+            if myTaskManager.items.contains(aItem) {
+                outputLabel.text = "Item already exists"
+            } else {
+                myTaskManager.addItems(aItem)
+                outputLabel.text = myTaskManager.description()
+                lastAddedLabel.text = "Last item added was \(aItem.name)"
+            }
+            
+        } else {
+            print("normal item")
+            aItem = Item(name: taskNameSelection.text!, priority: Priority(rawValue: taskPrioritySelection.selectedSegmentIndex)!)
+            //demo za prejšnje dni
+            
             print("about to add \(aItem.name) with id \(aItem.uID)")
             print(myTaskManager.items.contains(aItem))
             print(TaskManager.sharedInstance.items.contains(aItem))
@@ -45,22 +63,26 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
                 outputLabel.text = "Item already exists"
             } else {
                 myTaskManager.addItems(aItem)
-                print("just added \(aItem.name)")
+                print("Dodani item je tipa \(aItem.active)")
+                print("just added \(aItem.name) with status \(aItem.active)")
                 print(myTaskManager.items)
                 outputLabel.text = myTaskManager.description()
                 lastAddedLabel.text = "Last item added was \(aItem.name)"
                 
                 UIView.animateWithDuration(0.1, delay: 0, options: [], animations: {
-                        self.addTask.transform = CGAffineTransformMakeScale(1.5, 1.5)
+                    self.addTask.transform = CGAffineTransformMakeScale(1.5, 1.5)
                     
                     }, completion: {
                         completed in UIView.animateWithDuration(0.1, animations: {
                             self.addTask.transform = CGAffineTransformIdentity
                         })
-
-                    })
+                        
+                })
             }
         }
+        }
+        
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +105,6 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        saveItems(self)
         // Dispose of any resources that can be recreated.
     }
 

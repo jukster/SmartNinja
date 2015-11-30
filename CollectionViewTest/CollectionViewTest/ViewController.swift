@@ -13,8 +13,6 @@ class ViewController: UICollectionViewController {
     private let reuseIdentifier = "cell"
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
-    @IBOutlet weak var imageViewCell: UIImageView!
-
     var images = [UIImage]()
 
     override func viewDidLoad() {
@@ -46,26 +44,12 @@ class ViewController: UICollectionViewController {
 
 extension ViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath)
-        let image = images[indexPath.row]
-        let cellWidth =  cell.bounds.width
-        print(cellWidth)
-        let ratio = cellWidth / image.size.width
-        let size = CGSizeMake(cellWidth, image.size.height * ratio)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ImageCell
         
-        let hasAlpha = false
-        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        let image = images[indexPath.item]
         
-        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
-        image.drawInRect(CGRect(origin: CGPointZero, size: size))
+        cell.imageView.image = image
         
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        
-        let anImageView = UIImageView(image: scaledImage)
-        
-        cell.addSubview(anImageView)
         return cell
     }
     

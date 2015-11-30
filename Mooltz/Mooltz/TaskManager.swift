@@ -10,12 +10,13 @@ import Foundation
 
 class TaskManager {
     static let sharedInstance = TaskManager()
-    
-    lazy var items = [Item]()
+
+    var items = [Item]()
     
     func addItems(item: Item) {
         self.items.append(item)
         NSNotificationCenter.defaultCenter().postNotificationName("itemName", object: self)
+        saveItems(self)
     }
     
     func deleteItems(item: Item) {
@@ -23,6 +24,7 @@ class TaskManager {
             return
         }
         self.items.removeAtIndex(index)
+        saveItems(self)
     }
     
     func description() -> String {
@@ -32,13 +34,15 @@ class TaskManager {
 }
 
 extension TaskManager {
-    func itemsWithStatus(state: State) -> [Item] {
+    func activeItems() -> [Item] {
         var matchedItems = [Item]()
         for item in items {
-            if item.state == state {
+            if item.active {
                 matchedItems.append(item)
             }
         }
         return matchedItems
     }
 }
+
+

@@ -6,4 +6,9 @@
 //  Copyright © 2015 Marko Jukic. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class ImageCell: UICollectionViewCell {
+    
+    @IBOutlet weak var imageView: UIImageView!
+}

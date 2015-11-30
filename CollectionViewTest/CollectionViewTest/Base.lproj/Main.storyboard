@@ -21,14 +21,14 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="XtB-Kn-1x1">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="XtB-Kn-1x1" customClass="ImageCell" customModule="CollectionViewTest" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9C7-jg-wAD">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9C7-jg-wAD">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <animations/>
                                         </imageView>
@@ -44,6 +44,7 @@
                                     <constraint firstAttribute="trailingMargin" secondItem="9C7-jg-wAD" secondAttribute="trailing" constant="5" id="u9V-5o-eZO"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="imageView" destination="9C7-jg-wAD" id="Kr3-DG-2ex"/>
                                     <segue destination="50Q-dP-18E" kind="show" identifier="showImage" id="XeK-YF-rfX"/>
                                 </connections>
                             </collectionViewCell>

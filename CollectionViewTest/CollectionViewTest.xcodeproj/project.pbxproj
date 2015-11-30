@@ -13,6 +13,7 @@
 		A20108C01BFAED62008BDC3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20108BF1BFAED62008BDC3B /* Assets.xcassets */; };
 		A20108C31BFAED62008BDC3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A20108C11BFAED62008BDC3B /* LaunchScreen.storyboard */; };
 		A29AF04D1BFC392A00C0F08E /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29AF04C1BFC392A00C0F08E /* ImageDetailViewController.swift */; };
+		A2CF82D81BFFA502008E8F70 /* imageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF82D71BFFA502008E8F70 /* imageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A20108C21BFAED62008BDC3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A20108C41BFAED62008BDC3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A29AF04C1BFC392A00C0F08E /* ImageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
+		A2CF82D71BFFA502008E8F70 /* imageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				A20108B81BFAED62008BDC3B /* AppDelegate.swift */,
 				A20108BA1BFAED62008BDC3B /* ViewController.swift */,
+				A2CF82D71BFFA502008E8F70 /* imageCell.swift */,
 				A20108BC1BFAED62008BDC3B /* Main.storyboard */,
 				A29AF04C1BFC392A00C0F08E /* ImageDetailViewController.swift */,
 				A20108BF1BFAED62008BDC3B /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A20108BB1BFAED62008BDC3B /* ViewController.swift in Sources */,
+				A2CF82D81BFFA502008E8F70 /* imageCell.swift in Sources */,
 				A29AF04D1BFC392A00C0F08E /* ImageDetailViewController.swift in Sources */,
 				A20108B91BFAED62008BDC3B /* AppDelegate.swift in Sources */,
 			);

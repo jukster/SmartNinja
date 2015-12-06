@@ -12,8 +12,8 @@ import UIKit
 enum Priority: Int, CustomStringConvertible {
     case Normal, High
     
-    
     var description : String {
+
         switch self {
         case .Normal: return "Normal";
         case .High: return "High";
@@ -21,4 +21,6 @@ enum Priority: Int, CustomStringConvertible {
     }
 }
 
-let mojFont = UIFont(name: "Avenir Next", size: 14.0)
+let mojFont = UIFont(name: "Avenir Next", size: 16.0)
+
+let mojFontBold = UIFont(name: "AvenirNext-Bold", size: 16.0)

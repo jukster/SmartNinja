@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LocationWeatherViewController: UIViewController {
 
@@ -52,6 +53,8 @@ class LocationWeatherViewController: UIViewController {
         queue.name = "queue za singleLocationVC"
         
         queue.maxConcurrentOperationCount = 1
+        
+        main2()
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -69,5 +72,10 @@ class LocationWeatherViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func main2() {
+
+    }
+
 
 }

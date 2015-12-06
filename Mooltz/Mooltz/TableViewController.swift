@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MagicalRecord
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,7 +15,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var dates: [String] = [String]()
     
-    var itemsByDate: [String: [Item]] = [String: [Item]]()
+    var itemsByDate: [String: [CDItem]] = [String: [CDItem]]()
     
     lazy var dateFormatter: NSDateFormatter = {
 
@@ -43,6 +44,18 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "itemDetail" {
+            
+            if let itemDetailVC = segue.destinationViewController as? ItemDetailViewController {
+                
+                let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)!
+                
+                itemDetailVC.selectedItem = itemsByDate[dates[indexPath.section]]![indexPath.row]
+            }
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return itemsByDate[dates[section]]!.count
@@ -57,7 +70,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         let item = itemsByDate[section]![indexPath.item]
 
-        if item.active {
+        if item.active == 1 {
 
             reuseIdentifier = "TextCell"
 
@@ -77,6 +90,14 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         recognizer.minimumPressDuration = 0.5
         
         cell.addGestureRecognizer(recognizer)
+        
+        if let cellImage = item.hasImage {
+
+            print("trying image cell")
+            print(cellImage)
+            cell.imageView?.image = cellImage.imageRef
+            
+        }
 
         return cell
     }
@@ -103,8 +124,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         let item = itemsByDate[dates[indexPath.section]]![indexPath.row]
         
-        return item.active
-
+        if item.active == 0 { return false } else {return true}
+        
     }
 
 
@@ -116,7 +137,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
             item.active = false
             
-            saveItems(self)
+            //saveItems(self)
             
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         })
@@ -126,8 +147,9 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(animated: Bool) {
-        loadTableViewData()
-        tableView.reloadData()
+
+        refreshTable()
+
     }
     
     override func viewDidLoad() {
@@ -137,6 +159,26 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         tableView.dataSource = self
         
+        refreshTable()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTable", name: "didSaveImage", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTable", name: "NewItem", object: nil)
+
+        //let images = CDImage.MR_findAll()
+        
+        //print("ob launchu je slik \(images.count)")
+        
+        let items = CDItem.MR_findAll() as! [CDItem]
+        
+        for item in items {
+            print(item.hasImage)
+
+            print(item.hasImage?.imageRef)
+
+            print(item.hasImage?.imageFileName)
+        }
+
     }
     
     
@@ -146,7 +188,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let thisCell = recognizer.view as! UITableViewCell
             //print(thisCell.debugDescription)
             
-            var tappedItem: Item?
+            var tappedItem: CDItem?
             
             let indexPath = self.tableView.indexPathForCell(thisCell)
             
@@ -154,26 +196,25 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             print(tappedItem?.name)
             
-            let tapAlert = UIAlertController(title: thisCell.textLabel?.text, message: "Delete this item?", preferredStyle:UIAlertControllerStyle.Alert)
+            let tapAlert = UIAlertController(title: thisCell.textLabel?.text, message: "Delete this item?", preferredStyle:UIAlertControllerStyle.ActionSheet)
         
             tapAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             
-            tapAlert.addAction(UIAlertAction(title: "OK", style: .Destructive) { action in
+            tapAlert.addAction(UIAlertAction(title: "Delete", style: .Destructive) { action in
 
-                    let cellSection = self.dates[(indexPath?.section)!]
-
-                    TaskManager.sharedInstance.deleteItems(tappedItem!)
-
-                    self.loadTableViewData()
-
-                    if let _ = self.itemsByDate[cellSection] {
-
-                        self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
-
-                    } else {
-
-                        self.tableView.deleteSections(NSIndexSet(index: indexPath!.section), withRowAnimation: UITableViewRowAnimation.Fade)
-                    }
+                
+                    MagicalRecord.saveWithBlock({ context in
+                        
+                        tappedItem!.MR_deleteEntityInContext(context)
+                        
+                        }, completion: { (success, error) -> Void in
+                        
+                            ItemManager.sharedInstance.refreshItemsFromCD()
+                        
+                            self.refreshTable()
+                    })
+                
+                
                 
                 }
             )
@@ -182,29 +223,38 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    func refreshTable(){
+        
+        loadTableViewData()
+        
+        tableView.reloadData()
+    
+    }
+
+    
     func loadTableViewData() {
         
+        print("rebuidling dates")
+        
+        let itemsToSort = ItemManager.sharedInstance.items
+        
+        let sortedItems = itemsToSort.sort { $0.dateCreated!.compare($1.dateCreated!) == .OrderedDescending }
+        
         dates = [String]()
-        
-        itemsByDate = [String: [Item]]()
 
-        
-        let sortedItems = TaskManager.sharedInstance.items.sort { $0.dateCreated.compare($1.dateCreated) == .OrderedDescending }
+        itemsByDate = [String: [CDItem]]()
         
         for item in sortedItems {
             
-            let thisDateAsString = dateFormatter.stringFromDate(item.dateCreated)
+            let thisDateAsString = dateFormatter.stringFromDate(item.dateCreated!)
             
             if !dates.contains(thisDateAsString) {
                 dates.append(thisDateAsString)
-                itemsByDate[thisDateAsString] = [Item]()
+                itemsByDate[thisDateAsString] = [CDItem]()
             }
             
             itemsByDate[thisDateAsString]!.append(item)
         }
-        
-        print(dates)
-        print(itemsByDate)
     }
 
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+    <entity name="CDImage" representedClassName=".CDImage" syncable="YES">
+        <attribute name="imageFileName" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDItem" inverseName="hasImage" inverseEntity="CDItem" syncable="YES"/>
+    </entity>
+    <entity name="CDItem" representedClassName=".CDItem" syncable="YES">
+        <attribute name="active" attributeType="Boolean" syncable="YES"/>
+        <attribute name="dateCreated" attributeType="Date" syncable="YES"/>
+        <attribute name="dateModified" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priorityValue" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="hasImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDImage" inverseName="relationship" inverseEntity="CDImage" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CDImage" positionX="-54" positionY="36" width="128" height="75"/>
+        <element name="CDItem" positionX="-351" positionY="-42" width="128" height="150"/>
+    </elements>
+</model>

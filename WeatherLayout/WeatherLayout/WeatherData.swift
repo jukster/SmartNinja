@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 struct WeatherData {
     
@@ -87,6 +88,75 @@ class refreshWeatherForCell: NSOperation {
         
     }
     
+    func main2() {
+        Alamofire.request(.GET, "http://api.openweathermap.org/data/2.5/weather",
+            parameters:[
+                "q": self.locationForCell.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!,
+                "appid":"ff1b0f99ca54bb95eaa651b7409bcef2",
+                "units":"metric"]
+            ).responseJSON() { response in
+                
+                if response.result.isSuccess {
+                    
+                    let jsonResponse = response.result.value!
+                    
+                    let main = jsonResponse[0].valueForKey("main") as? String
+                    
+                    let description = jsonResponse[0].valueForKey("description") as? String
+                    
+                    let temperature = jsonResponse.valueForKey("main")!["temp"] as! Double
+                    
+                    print(main, description, temperature)
+                    
+                    //let returnedWeatherData = WeatherData(cityName: self.locationForCell, temperature: temperature, description: description, main: main)
+                    
+                }
+                
+            }
+        }
+    
+    override func main() {
+        Alamofire.request(.GET, "http://api.openweathermap.org/data/2.5/weather",
+            parameters:[
+                "q": "oslo",
+                "appid":"ff1b0f99ca54bb95eaa651b7409bcef2",
+                "units":"metric"]
+            ).responseJSON() { response in
+                
+                if response.result.isSuccess {
+                    
+                    let jsonResponse = response.result.value!
+                    
+                    let description = jsonResponse.valueForKey("weather")![0]["description"] as! String
+                    
+                    let main = jsonResponse.valueForKey("weather")![0]["main"] as! String
+                    
+                    let temperature = jsonResponse.valueForKey("main")!["temp"] as! Double
+                    
+                    let returnedWeatherData = WeatherData(cityName: self.locationForCell, temperature: temperature, description: description, main: main)
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        if let singleLocationVC = self.thisVC as? LocationWeatherViewController {
+                            
+                            singleLocationVC.currentWeather = returnedWeatherData
+                            
+                        }
+                        
+                        if let tableVC = self.thisVC as? WeatherLocationsTableController {
+                            
+                            tableVC.tableView.cellForRowAtIndexPath(self.indexPathOfCellToRefresh)?.detailTextLabel?.text = returnedWeatherData.getTemperatureAsString()
+                            
+                        }
+                        
+                    })
+                    
+                }
+                
+        }
+    }
+    
+    /* Stara verzija za NSURLSSESSION
     override func main() {
         let request = NSMutableURLRequest()
         
@@ -100,11 +170,7 @@ class refreshWeatherForCell: NSOperation {
             (data, response, error) -> Void in
             
             
-            guard (data != nil) else {
-                return
-            }
-            
-            guard error == nil else {
+            guard (data != nil || error == nil) else {
                 return
             }
             
@@ -154,4 +220,5 @@ class refreshWeatherForCell: NSOperation {
         }
         task.resume()
     }
+    */
 }

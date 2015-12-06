@@ -1,0 +1,23 @@
+PODS:
+  - MagicalRecord (3.0.0.dev.1449115777):
+    - MagicalRecord/Core (= 3.0.0.dev.1449115777)
+  - MagicalRecord/Core (3.0.0.dev.1449115777)
+
+DEPENDENCIES:
+  - MagicalRecord (from `https://github.com/magicalpanda/MagicalRecord.git`, branch
+    `release/3.0`)
+
+EXTERNAL SOURCES:
+  MagicalRecord:
+    :branch: release/3.0
+    :git: https://github.com/magicalpanda/MagicalRecord.git
+
+CHECKOUT OPTIONS:
+  MagicalRecord:
+    :commit: 6c36c3a3e540331b5bde54514f51498fbb2cb531
+    :git: https://github.com/magicalpanda/MagicalRecord.git
+
+SPEC CHECKSUMS:
+  MagicalRecord: 7a7d6bec32f952ad9f305bd9b3f9d42f583f18fb
+
+COCOAPODS: 0.39.0

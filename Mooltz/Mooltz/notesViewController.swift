@@ -9,28 +9,25 @@
 import UIKit
 
 class NotesViewController: UIViewController {
-    var selectedItem: Item?
     
-    @IBOutlet weak var taskDetails: UILabel!
+    @IBOutlet weak var inputTextView: UITextView!
+
+    var delegate: receivesNotes?
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        print(selectedItem?.name)
-        print(selectedItem?.priority)
-        let atributi = [NSFontAttributeName : mojFont!]
-        let atributi_bold = [NSFontAttributeName : UIFont.boldSystemFontOfSize(19.0)]
-        let makingString = NSMutableAttributedString(string: "Ime: ", attributes: atributi)
-        
-        makingString.appendAttributedString(NSAttributedString(string: (selectedItem?.name)!, attributes: atributi_bold))
 
-        makingString.appendAttributedString(NSAttributedString(string: "\n", attributes: atributi))
-        
-        makingString.appendAttributedString(NSAttributedString(string: "Prioriteta: ", attributes: atributi))
+        self.automaticallyAdjustsScrollViewInsets = false
+   
+    }
 
-        makingString.appendAttributedString(NSAttributedString(string: selectedItem!.priority!.description, attributes: atributi_bold))
+    @IBAction func saveNotes(sender: AnyObject) {
 
+        delegate!.setItemNotes(inputTextView.text)
         
-        taskDetails.attributedText = makingString
+        self.navigationController?.popViewControllerAnimated(true)
+        
     }
 
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchLocationViewController: UIViewController {
     @IBOutlet weak var failureLabel: UILabel!
@@ -27,7 +28,7 @@ class SearchLocationViewController: UIViewController {
         delegate?.currentWeather = WeatherData()
         */
         
-        getWeatherLocation(enteredLocation.text!)
+        getWeatherLocationAF(enteredLocation.text!)
         
         
     }
@@ -36,6 +37,8 @@ class SearchLocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //getWeatherLocationAF("Stockholm")
 
         // Do any additional setup after loading the view.
     }
@@ -45,44 +48,24 @@ class SearchLocationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getWeatherLocation(enteredLocation: String) {
-        
-        let request = NSMutableURLRequest()
-
-        request.URL = NSURL(string: "http://api.openweathermap.org/data/2.5/weather?q=" + enteredLocation.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())! + "&appid=ff1b0f99ca54bb95eaa651b7409bcef2&units=metric")
-
-        request.HTTPMethod = "GET"
-
-        let session = NSURLSession.sharedSession()
+    func getWeatherLocationAF(enteredLocation: String){
+        Alamofire.request(.GET, "http://api.openweathermap.org/data/2.5/weather",
+                parameters:[
+                "q": enteredLocation.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!,
+                "appid":"ff1b0f99ca54bb95eaa651b7409bcef2",
+                "units":"metric"]
+            ).responseJSON() { response in
             
-        let task = session.dataTaskWithRequest(request) {
-            (data, response, error) -> Void in
-            
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            
-            guard (data != nil) else {
-                return
-            }
-            
-            guard error == nil else {
-                return
-            }
-            
-            do {
-
-                let object = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
-
-                let dictionary = object as! [String: AnyObject]
+            if response.result.isSuccess {
                 
-                guard let _ = dictionary["weather"] as? [AnyObject] else {
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    
+                guard let _ = response.result.value!.valueForKey("weather") else {
                     dispatch_async(dispatch_get_main_queue(), {
                         
                         self.failureLabel.text = "No matches for location."
                         
                     })
                     return
+                    
                 }
                 
                 LocationsManager.sharedInstance.addLocation(enteredLocation)
@@ -91,22 +74,14 @@ class SearchLocationViewController: UIViewController {
                 
                 LocationsManager.sharedInstance.selectedLocationIndex = UInt(locationIndex!)
                 
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                
                 dispatch_async(dispatch_get_main_queue(), {
                     
                     self.navigationController?.popToRootViewControllerAnimated(true)
                 })
-                
-            } catch {
-                
             }
             
         }
-    
-        task.resume()
     }
-
 
     /*
     // MARK: - Navigation

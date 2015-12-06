@@ -5,20 +5,20 @@
 //  Created by Marko Jukic on 15/11/15.
 //  Copyright © 2015 Marko Jukic. All rights reserved.
 //
-
+/*
 import Foundation
 
 func saveItems(calledfrom: AnyObject){
 
     let data = NSKeyedArchiver.archivedDataWithRootObject(TaskManager.sharedInstance.items)
 
-    //NSUserDefaults.standardUserDefaults().setObject(data, forKey: "items")
+    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "items")
 
-    //NSUserDefaults.standardUserDefaults().synchronize()
+    NSUserDefaults.standardUserDefaults().synchronize()
 
     print("saved \(TaskManager.sharedInstance.items.count) items, called by \(calledfrom)")
     
-    // JSON vaja
+    /* JSON vaja
     
     do {
     
@@ -30,12 +30,13 @@ func saveItems(calledfrom: AnyObject){
     } catch {
         
     }
+    */
     
 }
 
 func loadItems(calledfrom: AnyObject){
 
-    if let encoded = NSUserDefaults.standardUserDefaults().objectForKey("itemsJSON") {
+    if let encoded = NSUserDefaults.standardUserDefaults().objectForKey("items") {
 
         func decodeItems(encoded: NSData) -> AnyObject? {
 
@@ -49,3 +50,4 @@ func loadItems(calledfrom: AnyObject){
 
     }
 }
+*/

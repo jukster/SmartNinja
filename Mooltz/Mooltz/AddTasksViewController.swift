@@ -8,19 +8,57 @@
 
 import UIKit
 
-class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesImage {
+class AddTasksViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate, receivesNotes {
     
-    let myTaskManager = TaskManager.sharedInstance
-    
+    // outlets
+    @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var lastAddedLabel: UILabel!
     @IBOutlet weak var taskNameSelection: UITextField!
     @IBOutlet weak var taskPrioritySelection: UISegmentedControl!
     @IBOutlet weak var outputLabel: UILabel!
-    @IBOutlet weak var chosenImageView: UIImageView!
-    @IBOutlet weak var addTask: UIButton!
     
-    @IBAction func addTask(sender: AnyObject) {
+    let myItemManager = ItemManager.sharedInstance
+    
+    let photoPicker = UIImagePickerController()
+    
+    var didSetPhoto = false
+    
+    var notes: String?
+        
+    // add Photo funcionality
+    
+    @IBAction func addPhoto(sender: AnyObject) {        
+        photoPicker.allowsEditing = false
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            photoPicker.sourceType = .Camera
+        } else {
+            photoPicker.sourceType = .PhotoLibrary
+        }
+        
+        presentViewController(photoPicker, animated: true, completion: nil)
 
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+
+            addPhotoButton.setImage(pickedImage, forState: .Normal)
+            didSetPhoto = true
+            
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+
+    }
+    
+    // Saving Item
+    @IBAction func saveItem(sender: AnyObject) {
+        // no task name
         guard taskNameSelection.text != "" else {
             outputLabel.text = "Please enter a task name"
             
@@ -35,74 +73,37 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
             return
         }
         
-        self.textFieldShouldReturn(taskNameSelection)
+        //self.textFieldShouldReturn(taskNameSelection)
         
-        var aItem: Item
+        print("normal item")
         
-        if let forceBackwardsDateInt = Int(taskNameSelection.text!) {
-            aItem = Item(forceBackwardsDate: forceBackwardsDateInt)
-            print("fudging item with backwardsDate")
-            if myTaskManager.items.contains(aItem) {
-                outputLabel.text = "Item already exists"
-            } else {
-                myTaskManager.addItems(aItem)
-                outputLabel.text = myTaskManager.description()
-                lastAddedLabel.text = "Last item added was \(aItem.name)"
-            }
+        myItemManager.addItem(taskNameSelection.text!, priority: Priority(rawValue: taskPrioritySelection.selectedSegmentIndex)!, notes: notes, hasImage: addPhotoButton.imageView?.image)
+        
+        //myItemManager.loadAllItems()
+       
+        self.navigationController?.popViewControllerAnimated(true)
+        
+        //outputLabel.text = myItemManager.description()
+        //lastAddedLabel.text = "Last item added was \(aItem.name)"
             
-        } else {
-            print("normal item")
-            aItem = Item(name: taskNameSelection.text!, priority: Priority(rawValue: taskPrioritySelection.selectedSegmentIndex)!)
-            //demo za prejšnje dni
-            
-            print("about to add \(aItem.name) with id \(aItem.uID)")
-            print(myTaskManager.items.contains(aItem))
-            print(TaskManager.sharedInstance.items.contains(aItem))
-            print(myTaskManager.items)
-            if myTaskManager.items.contains(aItem) {
-                outputLabel.text = "Item already exists"
-            } else {
-                myTaskManager.addItems(aItem)
-                print("Dodani item je tipa \(aItem.active)")
-                print("just added \(aItem.name) with status \(aItem.active)")
-                print(myTaskManager.items)
-                outputLabel.text = myTaskManager.description()
-                lastAddedLabel.text = "Last item added was \(aItem.name)"
-                
-                UIView.animateWithDuration(0.1, delay: 0, options: [], animations: {
-                    self.addTask.transform = CGAffineTransformMakeScale(1.5, 1.5)
-                    
-                    }, completion: {
-                        completed in UIView.animateWithDuration(0.1, animations: {
-                            self.addTask.transform = CGAffineTransformIdentity
-                        })
-                        
-                })
-            }
-        }
-        }
-        
-
-
+    }
+    
+    func setItemNotes(incomingNotes: String) {
+        notes = incomingNotes
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.taskNameSelection.delegate = self
+        
+        self.photoPicker.delegate = self
         
         // Do any additional setup after loading the view, typically from a nib.
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "novItemLog", name: "itemName", object: nil)
-        
-        outputLabel.font = mojFont
-        taskNameSelection.font = mojFont
-        
         }
         
         
-    func novItemLog() {
-        //print("dodan item")
-        
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -113,33 +114,17 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, receivesIma
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "addImage" {
+        if segue.identifier == "viewNotesSegue" {
             let destViewController = segue.destinationViewController
-            (destViewController as! AddImageViewController).delegate = self
-        } else if segue.identifier == "viewNotesSegue" {
-            let destViewController = segue.destinationViewController
-            var lastItem: Item?
-            for item in myTaskManager.items {
-                if item.name == taskNameSelection.text {
-                    lastItem = item
-                }
-            }
-            (destViewController as! NotesViewController).selectedItem = lastItem!
+            
+            (destViewController as! NotesViewController).delegate = self
         }
     }
-    
 
     func textFieldShouldReturn(textfield: UITextField) -> Bool {
         textfield.resignFirstResponder()
         return true
     }
     
-    func setImage(image: UIImage) {
-        chosenImageView.contentMode = .ScaleAspectFit
-        chosenImageView.image = image
-        
-        outputLabel.text = "Added image: " + String(image.size.width) + " x " + String(image.size.height)
-    }
-
 
 }

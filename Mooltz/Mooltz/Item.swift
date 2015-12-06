@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Item: NSObject, NSCoding {
     
@@ -17,6 +18,10 @@ class Item: NSObject, NSCoding {
             self.dateModified = NSDate()
         }
     }
+    
+    var image: UIImage?
+    
+    var imagePath: String?
     
     let uID: Int
     
@@ -30,10 +35,8 @@ class Item: NSObject, NSCoding {
         }
     }
     
-    override var hashValue: Int {
-        return self.name.hashValue
-    }
-    
+    var notes: String?
+        
     override func isEqual(object: AnyObject?) -> Bool {
         if let object = object as? Item {
             return object.name == self.name
@@ -51,7 +54,15 @@ class Item: NSObject, NSCoding {
     override var description: String {
         let formatter = NSDateFormatter()
         formatter.timeStyle = NSDateFormatterStyle.LongStyle
-        return "Predmet \(name), ustvarjen \(formatter.stringFromDate(dateCreated)). ID \(uID)"
+        
+        // print, če je notes zraven
+        if let notesContent = notes {
+            return "Predmet \(name), ustvarjen \(formatter.stringFromDate(dateCreated)). ID \(uID). Notes: \(notesContent)"
+        } else {
+            return "Predmet \(name), ustvarjen \(formatter.stringFromDate(dateCreated)). ID \(uID). Notes: None."
+            
+        }
+        
     }
     
     init(name: String, priority: Priority) {
@@ -87,6 +98,8 @@ class Item: NSObject, NSCoding {
         coder.encodeObject(self.dateModified, forKey: "dateModified")
         coder.encodeObject(self.priority as? AnyObject, forKey: "priority")
         coder.encodeObject(self.active, forKey: "active")
+        coder.encodeObject(self.notes, forKey: "notes")
+        coder.encodeObject(self.imagePath, forKey: "imagePath")
     }
     
     @objc required init(coder: NSCoder) {
@@ -96,5 +109,7 @@ class Item: NSObject, NSCoding {
         self.dateModified = coder.decodeObjectForKey("dateModified") as! NSDate
         self.priority = coder.decodeObjectForKey("priority") as? Priority
         self.active = coder.decodeObjectForKey("active") as! Bool
+        self.notes = coder.decodeObjectForKey("notes") as? String
+        self.imagePath = coder.decodeObjectForKey("imagePath") as? String
     }
 }

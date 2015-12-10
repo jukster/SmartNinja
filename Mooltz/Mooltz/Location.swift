@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/*
 enum Priority: Int, CustomStringConvertible {
     case Normal, High
     
@@ -17,6 +18,20 @@ enum Priority: Int, CustomStringConvertible {
         switch self {
         case .Normal: return "Normal";
         case .High: return "High";
+        }
+    }
+}
+*/
+
+enum Location: Int, CustomStringConvertible {
+    
+    case Here, There
+    
+    var description: String {
+        
+        switch self {
+        case .Here: return "Here";
+        case .There: return "There";
         }
     }
 }

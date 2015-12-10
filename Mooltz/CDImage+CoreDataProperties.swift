@@ -2,7 +2,7 @@
 //  CDImage+CoreDataProperties.swift
 //  Mooltz
 //
-//  Created by Marko Jukic on 06/12/15.
+//  Created by Marko Jukic on 09/12/15.
 //  Copyright © 2015 Marko Jukic. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

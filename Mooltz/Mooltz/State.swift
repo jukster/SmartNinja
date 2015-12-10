@@ -9,5 +9,5 @@
 import Foundation
 
 enum State: Int {
-    case Active = 0, Inactive
+    case Marked = 0, Unmarked
 }

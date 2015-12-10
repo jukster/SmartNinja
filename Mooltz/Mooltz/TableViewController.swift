@@ -13,6 +13,10 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tableView: UITableView!
     
+    var locationSections: [String] = [String]()
+    
+    var itemsByLocation: [String: [CDItem]] = [String: [CDItem]]()
+    
     var dates: [String] = [String]()
     
     var itemsByDate: [String: [CDItem]] = [String: [CDItem]]()
@@ -40,7 +44,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-        return dates.count
+        return locationSections.count
 
     }
     
@@ -51,37 +55,41 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)!
                 
-                itemDetailVC.selectedItem = itemsByDate[dates[indexPath.section]]![indexPath.row]
+                itemDetailVC.selectedItem = itemsByLocation[locationSections[indexPath.section]]![indexPath.row]
             }
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return itemsByDate[dates[section]]!.count
+        print("number of rows in section: \(itemsByLocation[locationSections[section]]!.count)")
+
+        return itemsByLocation[locationSections[section]]!.count
 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
+    
         var reuseIdentifier = ""
         
-        let section = dates[indexPath.section]
+        let section = locationSections[indexPath.section]
 
-        let item = itemsByDate[section]![indexPath.item]
+        let item = itemsByLocation[section]![indexPath.item]
 
-        if item.active == 1 {
+        if item.marked == 1 {
 
-            reuseIdentifier = "TextCell"
+            reuseIdentifier = "TextCellMarked"
 
         } else {
 
-            reuseIdentifier = "TextCellInactive"
+            reuseIdentifier = "TextCell"
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as UITableViewCell        
         
-        cell.textLabel?.text = itemsByDate[dates[indexPath.section]]![indexPath.row].name
+        cell.textLabel?.text = itemsByLocation[locationSections[indexPath.section]]![indexPath.row].name
+        
+        cell.imageView!.image = nil
         
         // Add gesture recognizer - samo če še ni nobenega
         
@@ -95,7 +103,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
             print("trying image cell")
             print(cellImage)
-            cell.imageView?.image = cellImage.imageRef
+            //cell.imageView?.image = cellImage.imageRef
+            cell.imageView?.image = UIImage(contentsOfFile: CDImage.getDocumentPath(cellImage.imageFileName! + "_thumb"))
             
         }
 
@@ -104,6 +113,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
+        /*
         let calendar = NSCalendar.currentCalendar()
 
         let todayAsString = dateFormatter.stringFromDate(NSDate())
@@ -116,37 +126,118 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         else if dates[section] == yesterdayAsString {
             return "Yesterday"
         }
+        */
         
-        return dates[section]
+        return locationSections[section]
     }
-
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-
-        let item = itemsByDate[dates[indexPath.section]]![indexPath.row]
-        
-        if item.active == 0 { return false } else {return true}
-        
-    }
-
 
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let item = itemsByDate[dates[indexPath.section]]![indexPath.row]
+        let item = itemsByLocation[locationSections[indexPath.section]]![indexPath.row]
         
-        let action = UITableViewRowAction(style: .Normal, title: "Finish", handler: { action, indexPath in
+        var rowActions = [UITableViewRowAction]()
+        
+        //markAction
+        
+        let currentlyMarked = item.marked
+        
+        var titleMarked: String = String()
+        
+        if currentlyMarked == 1 {
 
-            item.active = false
+            titleMarked = "Unmark"
+
+        } else {
             
-            //saveItems(self)
-            
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        })
-        action.backgroundColor = UIColor.blueColor()
+            titleMarked = "Mark"
+        }
         
-        return [action];
+        let markAction = UITableViewRowAction(style: .Normal, title: titleMarked, handler: { action, indexPath
+            
+            in
+            
+            var destinationMark = false
+            
+            if currentlyMarked == 0 {
+
+                destinationMark = true
+                
+            }
+            
+            MagicalRecord.saveWithBlock({context in
+                
+                item.marked = destinationMark
+                
+                }
+                , completion: { success, error -> Void in
+                    
+                    ItemManager.sharedInstance.refreshItemsFromCD()
+                    
+                    self.refreshTable()
+            })
+
+            
+            //tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        })
+        
+        markAction.backgroundColor = UIColor(red: 138.0/255.0, green: 9.0/255.0, blue: 23.0/255.0, alpha: 1.0)
+
+        rowActions.append(markAction)
+        
+        var titleLocation: String = String()
+        
+        if item.location == Location.Here {
+            
+            titleLocation = "Move There"
+
+        } else {
+            
+            titleLocation = "Move Here"
+            
+        }
+        
+        let moveAction = UITableViewRowAction(style: .Normal, title: titleLocation, handler: { action, indexPath in
+            
+            var destLocation: Location {
+                if item.location == Location.Here {
+
+                    return Location.There
+
+                } else {
+                    
+                    return Location.Here
+                }
+            }
+            
+            MagicalRecord.saveWithBlock({context in
+                    
+                    item.location = destLocation
+                    
+                    }
+                    , completion: { success, error -> Void in
+
+                        ItemManager.sharedInstance.refreshItemsFromCD()
+                        
+                        self.refreshTable()
+                })
+            
+        })
+        
+        moveAction.backgroundColor = UIColor(red: 3.0/255.0, green: 145.0/255.0, blue: 214.0/255.0, alpha: 1.0)
+        
+        rowActions.append(moveAction)
+        
+        return rowActions;
+        
+        // takojšen učinek geste move. Plus swipe z desne?
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        for item in ItemManager.sharedInstance.items {
+            print("item marked status \(item.marked)")
+        }
+
 
         refreshTable()
 
@@ -159,25 +250,12 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         tableView.dataSource = self
         
-        refreshTable()
+        //refreshTable()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTable", name: "didSaveImage", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTable", name: "NewItem", object: nil)
-
-        //let images = CDImage.MR_findAll()
         
-        //print("ob launchu je slik \(images.count)")
-        
-        let items = CDItem.MR_findAll() as! [CDItem]
-        
-        for item in items {
-            print(item.hasImage)
-
-            print(item.hasImage?.imageRef)
-
-            print(item.hasImage?.imageFileName)
-        }
 
     }
     
@@ -192,7 +270,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             let indexPath = self.tableView.indexPathForCell(thisCell)
             
-            tappedItem = itemsByDate[dates[indexPath!.section]]![indexPath!.item]
+            tappedItem = itemsByLocation[locationSections[indexPath!.section]]![indexPath!.item]
             
             print(tappedItem?.name)
             
@@ -225,6 +303,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func refreshTable(){
         
+        ItemManager.sharedInstance.refreshItemsFromCD()
+        
         loadTableViewData()
         
         tableView.reloadData()
@@ -234,27 +314,36 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadTableViewData() {
         
-        print("rebuidling dates")
-        
         let itemsToSort = ItemManager.sharedInstance.items
         
-        let sortedItems = itemsToSort.sort { $0.dateCreated!.compare($1.dateCreated!) == .OrderedDescending }
-        
-        dates = [String]()
+        let sortedItems = itemsToSort.sort {
+            
+            if $0.location.description == $1.location.description {
+                
+                return $0.dateCreated!.compare($1.dateCreated!) == .OrderedDescending
 
-        itemsByDate = [String: [CDItem]]()
+            } else {
+            
+                return $0.location.description.compare($1.location.description) == .OrderedAscending
+            }
+        }
         
+        locationSections = [String]()
+        
+        itemsByLocation = [String: [CDItem]]()
+
         for item in sortedItems {
             
-            let thisDateAsString = dateFormatter.stringFromDate(item.dateCreated!)
-            
-            if !dates.contains(thisDateAsString) {
-                dates.append(thisDateAsString)
-                itemsByDate[thisDateAsString] = [CDItem]()
+            if !locationSections.contains(item.location.description) {
+                
+                locationSections.append(item.location.description)
+                
+                itemsByLocation[item.location.description] = [CDItem]()
             }
             
-            itemsByDate[thisDateAsString]!.append(item)
+            itemsByLocation[item.location.description]!.append(item)
         }
+        
     }
 
 }

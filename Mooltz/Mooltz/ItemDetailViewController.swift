@@ -24,7 +24,7 @@ class ItemDetailViewController: UIViewController {
 
             let displayString = NSMutableAttributedString()
 
-            displayString.appendAttributedString(NSAttributedString(string: "Priority: \(thisItem.priority.description)\n", attributes: [NSFontAttributeName: mojFontBold!]))
+            displayString.appendAttributedString(NSAttributedString(string: "Location: \(thisItem.location.description)\n", attributes: [NSFontAttributeName: mojFontBold!]))
             
             if let itemNotes = thisItem.notes {
                 
@@ -36,13 +36,7 @@ class ItemDetailViewController: UIViewController {
             itemTextDetails.attributedText = displayString
             
             self.title = thisItem.name
-            
-            /*
-            
-            30	            displayString.appendAttributedString(NSAttributedString(string: "Name: ", attributes: [NSFontAttributeName : UIFont(name: "Lato-Regular", size: fontSize)!]))
-            31	            displayString.appendAttributedString(NSAttributedString(string: "\(game.name)\n", attributes: [NSFontAttributeName : UIFont(name: "Lato-Bold", size: fontSize)!]))
 
-            */
             
         }
 

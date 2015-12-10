@@ -21,20 +21,20 @@ class CDItem: NSManagedObject {
         }
     }
     
-    var priority: Priority {
+    var location: Location {
         
         get {
             
-            let priorityValueAsInt = self.priorityValue?.longValue
+            let locationValueAsInt = self.locationValue?.longValue
             
-            let priority = Priority(rawValue: priorityValueAsInt!)
+            let location = Location(rawValue: locationValueAsInt!)
             
-            return priority!
+            return location!
         }
         
         set {
 
-            self.priorityValue = newValue.rawValue
+            self.locationValue = newValue.rawValue
 
         }
         

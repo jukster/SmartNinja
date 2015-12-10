@@ -2,7 +2,7 @@
 //  CDItem+CoreDataProperties.swift
 //  Mooltz
 //
-//  Created by Marko Jukic on 06/12/15.
+//  Created by Marko Jukic on 09/12/15.
 //  Copyright © 2015 Marko Jukic. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,12 +14,12 @@ import CoreData
 
 extension CDItem {
 
-    @NSManaged var active: NSNumber?
+    @NSManaged var marked: NSNumber?
     @NSManaged var dateCreated: NSDate?
     @NSManaged var dateModified: NSDate?
+    @NSManaged var locationValue: NSNumber?
     @NSManaged var name: String?
     @NSManaged var notes: String?
-    @NSManaged var priorityValue: NSNumber?
     @NSManaged var hasImage: CDImage?
 
 }

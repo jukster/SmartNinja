@@ -11,9 +11,8 @@
 		A237BE581C12AD4700BBC924 /* TaskManagerLegacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237BE571C12AD4700BBC924 /* TaskManagerLegacy.swift */; };
 		A237BE5A1C13240500BBC924 /* AddTasksViewControllerLegacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237BE591C13240500BBC924 /* AddTasksViewControllerLegacy.swift */; };
 		A237BE5C1C14CB9B00BBC924 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A237BE5B1C14CB9B00BBC924 /* ItemDetailViewController.swift */; };
-		A25004561BDE9EA200370136 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25004551BDE9EA200370136 /* Item.swift */; };
 		A25004581BDE9ECF00370136 /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25004571BDE9ECF00370136 /* ItemManager.swift */; };
-		A250045B1BDE9F1200370136 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25004591BDE9F1200370136 /* Priority.swift */; };
+		A250045B1BDE9F1200370136 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25004591BDE9F1200370136 /* Location.swift */; };
 		A250045C1BDE9F1200370136 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A250045A1BDE9F1200370136 /* State.swift */; };
 		A27F51BC1BE61A6A0065E3BC /* receivesNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F51BB1BE61A6A0065E3BC /* receivesNotes.swift */; };
 		A297D19C1BE2804100FEF12B /* DelegateExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A297D19B1BE2804100FEF12B /* DelegateExample.swift */; };
@@ -38,9 +37,8 @@
 		A237BE571C12AD4700BBC924 /* TaskManagerLegacy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManagerLegacy.swift; sourceTree = "<group>"; };
 		A237BE591C13240500BBC924 /* AddTasksViewControllerLegacy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTasksViewControllerLegacy.swift; sourceTree = "<group>"; };
 		A237BE5B1C14CB9B00BBC924 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
-		A25004551BDE9EA200370136 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A25004571BDE9ECF00370136 /* ItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
-		A25004591BDE9F1200370136 /* Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		A25004591BDE9F1200370136 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		A250045A1BDE9F1200370136 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		A27F51BB1BE61A6A0065E3BC /* receivesNotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = receivesNotes.swift; sourceTree = "<group>"; };
 		A297D19B1BE2804100FEF12B /* DelegateExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateExample.swift; sourceTree = "<group>"; };
@@ -112,21 +110,20 @@
 				A2D47BFC1BD73A330048D9C7 /* AppDelegate.swift */,
 				A2A8F0BC1BF8791B005D2BD7 /* saveLoadItems.swift */,
 				A298F32C1BEB13C40034DA9C /* TableViewController.swift */,
+				A25004571BDE9ECF00370136 /* ItemManager.swift */,
 				A2D47BFE1BD73A330048D9C7 /* AddTasksViewController.swift */,
-				A237BE591C13240500BBC924 /* AddTasksViewControllerLegacy.swift */,
 				A29EC1CD1BF2FFF10020A846 /* notesViewController.swift */,
 				A27F51BB1BE61A6A0065E3BC /* receivesNotes.swift */,
-				A25004591BDE9F1200370136 /* Priority.swift */,
+				A25004591BDE9F1200370136 /* Location.swift */,
 				A250045A1BDE9F1200370136 /* State.swift */,
-				A25004571BDE9ECF00370136 /* ItemManager.swift */,
-				A237BE571C12AD4700BBC924 /* TaskManagerLegacy.swift */,
-				A25004551BDE9EA200370136 /* Item.swift */,
 				A2D47C001BD73A330048D9C7 /* Main.storyboard */,
 				A237BE5B1C14CB9B00BBC924 /* ItemDetailViewController.swift */,
 				A2D47C031BD73A330048D9C7 /* Assets.xcassets */,
 				A2D47C051BD73A330048D9C7 /* LaunchScreen.storyboard */,
 				A2D47C081BD73A330048D9C7 /* Info.plist */,
 				A297D19B1BE2804100FEF12B /* DelegateExample.swift */,
+				A237BE571C12AD4700BBC924 /* TaskManagerLegacy.swift */,
+				A237BE591C13240500BBC924 /* AddTasksViewControllerLegacy.swift */,
 			);
 			path = Mooltz;
 			sourceTree = "<group>";
@@ -265,7 +262,6 @@
 				A2B7C1241C114DE4006F5932 /* CDImage+CoreDataProperties.swift in Sources */,
 				A297D19C1BE2804100FEF12B /* DelegateExample.swift in Sources */,
 				A2B7C1251C114DE4006F5932 /* CDImage.swift in Sources */,
-				A25004561BDE9EA200370136 /* Item.swift in Sources */,
 				A27F51BC1BE61A6A0065E3BC /* receivesNotes.swift in Sources */,
 				A2B7C1271C114DE4006F5932 /* CDItem.swift in Sources */,
 				A298F32D1BEB13C40034DA9C /* TableViewController.swift in Sources */,
@@ -277,7 +273,7 @@
 				A2D47BFD1BD73A330048D9C7 /* AppDelegate.swift in Sources */,
 				A250045C1BDE9F1200370136 /* State.swift in Sources */,
 				A237BE5C1C14CB9B00BBC924 /* ItemDetailViewController.swift in Sources */,
-				A250045B1BDE9F1200370136 /* Priority.swift in Sources */,
+				A250045B1BDE9F1200370136 /* Location.swift in Sources */,
 				A2A8F0BD1BF8791B005D2BD7 /* saveLoadItems.swift in Sources */,
 				A237BE581C12AD4700BBC924 /* TaskManagerLegacy.swift in Sources */,
 			);

@@ -14,7 +14,8 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var lastAddedLabel: UILabel!
     @IBOutlet weak var taskNameSelection: UITextField!
-    @IBOutlet weak var taskPrioritySelection: UISegmentedControl!
+
+    @IBOutlet weak var locationSelection: UISegmentedControl!
     @IBOutlet weak var outputLabel: UILabel!
     
     let myItemManager = ItemManager.sharedInstance
@@ -23,27 +24,49 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     var didSetPhoto = false
     
+    var savedImageName: String?
+    
     var notes: String?
         
     // add Photo funcionality
     
     @IBAction func addPhoto(sender: AnyObject) {        
-        photoPicker.allowsEditing = false
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            photoPicker.sourceType = .Camera
-        } else {
-            photoPicker.sourceType = .PhotoLibrary
-        }
-        
-        presentViewController(photoPicker, animated: true, completion: nil)
+        photoPicker.allowsEditing = true
 
+        let tapAlert = UIAlertController(title: "Add photo", message: "Choose photo source:", preferredStyle:UIAlertControllerStyle.ActionSheet)
+        
+        tapAlert.addAction(UIAlertAction(title: "Take photo", style: .Default) { action in
+            
+            self.photoPicker.sourceType = .Camera
+    
+            
+            self.presentViewController(self.photoPicker, animated: true, completion: nil)
+
+            })
+        
+        tapAlert.addAction(UIAlertAction(title: "Choose from library", style: .Default) { action in
+            
+            
+            self.photoPicker.sourceType = .PhotoLibrary
+            
+            
+            self.presentViewController(self.photoPicker, animated: true, completion: nil)
+            
+            })
+        
+        self.presentViewController(tapAlert, animated: true, completion: nil)    
+        
     }
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-
+            
+            savedImageName = ItemManager.sharedInstance.storeImage(pickedImage)
+                    
             addPhotoButton.setImage(pickedImage, forState: .Normal)
+
             didSetPhoto = true
             
         }
@@ -73,13 +96,10 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, UIImagePick
             return
         }
         
-        //self.textFieldShouldReturn(taskNameSelection)
+        myItemManager.addItem(taskNameSelection.text!, location: Location(rawValue: locationSelection.selectedSegmentIndex)!, notes: notes, savedImageName: savedImageName)
         
-        print("normal item")
+        //myItemManager.refreshItemsFromCD()
         
-        myItemManager.addItem(taskNameSelection.text!, priority: Priority(rawValue: taskPrioritySelection.selectedSegmentIndex)!, notes: notes, hasImage: addPhotoButton.imageView?.image)
-        
-        //myItemManager.loadAllItems()
        
         self.navigationController?.popViewControllerAnimated(true)
         
@@ -102,6 +122,16 @@ class AddTasksViewController: UIViewController, UITextFieldDelegate, UIImagePick
         // Do any additional setup after loading the view, typically from a nib.
         
         }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.taskNameSelection.becomeFirstResponder()
+        print(didSetPhoto)
+        if let savedImageName = savedImageName {
+            print(savedImageName)
+        } else {
+            print("no saved Image")
+        }
+    }
         
         
     override func didReceiveMemoryWarning() {

@@ -21,6 +21,14 @@ class NotesViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
    
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(true)
+
+        self.inputTextView.becomeFirstResponder()
+
+    }
 
     @IBAction func saveNotes(sender: AnyObject) {
 

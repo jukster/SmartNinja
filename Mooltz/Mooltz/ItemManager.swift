@@ -8,6 +8,7 @@
 
 import Foundation
 import MagicalRecord
+import ImageIO
 
 class ItemManager {
 
@@ -29,13 +30,13 @@ class ItemManager {
         
     }
     
-    func addItem(name: String, priority: Priority, notes: String?, hasImage: UIImage?) {
+    func addItem(name: String, location: Location, notes: String?, savedImageName: String?) {
         
         MagicalRecord.saveWithBlock({context in
             
             let newCDItem = CDItem.MR_createEntityInContext(context)
             
-            newCDItem.active = 1
+            newCDItem.marked = 0
             
             newCDItem.dateCreated = NSDate()
             
@@ -43,7 +44,7 @@ class ItemManager {
 
             newCDItem.name = name
             
-            newCDItem.priorityValue = priority.rawValue
+            newCDItem.locationValue = location.rawValue
             
             if let itemNotes = notes {
                 
@@ -51,11 +52,11 @@ class ItemManager {
             
             }
             
-            if let itemImage = hasImage {
+            if let itemImage = savedImageName {
                 
                 let newImage = CDImage.MR_createEntityInContext(context)
                     
-                newImage.imageFileName = self.storeImage(itemImage)
+                newImage.imageFileName = itemImage
                     
                 newImage.relationship = newCDItem
                 
@@ -63,6 +64,8 @@ class ItemManager {
         
             }, completion: {success, error in
                 NSNotificationCenter.defaultCenter().postNotificationName("NewItem", object: nil)
+                
+                //self.refreshItemsFromCD()
                 
         })
     
@@ -75,11 +78,39 @@ class ItemManager {
     func storeImage(image: UIImage) -> String {
 
         let imageName = CDImage.generateImageName()
-        
+
+        let imageNameThumb = imageName + "_thumb"
+
         print("generated name: \(imageName)")
+
+        let imageData = NSData(data: UIImagePNGRepresentation(image)!)
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+            
+            let imageSource = CGImageSourceCreateWithData(imageData as CFDataRef, nil)
+            
+            let options: [NSString: NSObject] = [
+                kCGImageSourceThumbnailMaxPixelSize: 200 / 2.0,
+                kCGImageSourceCreateThumbnailFromImageAlways: true
+            ]
+            
+            let scaledImage = CGImageSourceCreateThumbnailAtIndex(imageSource!, 0, options).flatMap { UIImage(CGImage: $0) }
+            
+            let scaledImageData = NSData(data: UIImagePNGRepresentation(scaledImage!)!)
+            
+            scaledImageData.writeToFile(CDImage.getDocumentPath(imageNameThumb), atomically: true)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                NSNotificationCenter.defaultCenter().postNotificationName("didSaveThumb", object: nil)
+            })
+            
+            
+            print("wrote down image thumbnail for \(imageName)")
+            
+        }
+
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            let imageData = NSData(data: UIImagePNGRepresentation(image)!)
             
             imageData.writeToFile(CDImage.getDocumentPath(imageName), atomically: true)
             
@@ -93,6 +124,11 @@ class ItemManager {
         }
         
         return imageName
+    }
+    
+    func resizeImageAtPath(imageData: NSData) {
+        
+
     }
 
 }

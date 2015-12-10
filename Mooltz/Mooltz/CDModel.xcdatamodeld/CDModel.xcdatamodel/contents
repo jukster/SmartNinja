@@ -5,12 +5,12 @@
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDItem" inverseName="hasImage" inverseEntity="CDItem" syncable="YES"/>
     </entity>
     <entity name="CDItem" representedClassName=".CDItem" syncable="YES">
-        <attribute name="active" attributeType="Boolean" syncable="YES"/>
         <attribute name="dateCreated" attributeType="Date" syncable="YES"/>
         <attribute name="dateModified" attributeType="Date" syncable="YES"/>
+        <attribute name="locationValue" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="marked" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="priorityValue" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="hasImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDImage" inverseName="relationship" inverseEntity="CDImage" syncable="YES"/>
     </entity>
     <elements>
